@@ -161,6 +161,7 @@
             this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Exit instead?";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // lblCustomerLastName
             // 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FotoMagic
 {
-    class Customer
+    public class Customer
     {
 
         public Customer(string firstName, string lastName, float owedMoney)

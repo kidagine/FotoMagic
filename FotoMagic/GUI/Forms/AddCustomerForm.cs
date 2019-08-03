@@ -75,6 +75,10 @@ namespace FotoMagic
             model.CreateCustomer(firstName, lastName, owedMoney);
             this.Hide();
         }
-    }
 
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+    }
 }

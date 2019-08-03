@@ -25,12 +25,39 @@ namespace FotoMagic.GUI
             }
             return instance;
         }
+
+        public List<Customer> GetCustomersList()
+        {
+            return customersList;
+        }
+
+        public void RemoveCustomer(string customerToRemove)
+        {
+            customersList.RemoveAt(0);
+            foreach (Customer c in customersList)
+            {
+                if (c.ToString().Equals(customerToRemove))
+                {
+                    Debug.WriteLine("yes");
+                    customersList.Remove(c);
+                    return;
+                }
+            }
+
+        }
+        
+
+        public void LoadCustomer(Customer customer)
+        {
+            customersList.Add(customer);
+        }
             
         public void CreateCustomer(String firstName, string lastName, float owedMoney)
         {
             Customer customer = new Customer(firstName, lastName, owedMoney);
             customersList.Add(customer);
             WriteToTextFile();
+            (System.Windows.Forms.Application.OpenForms["MainForm"] as MainForm).LoadCustomer(customer);
         }
 
         private void WriteToTextFile()
