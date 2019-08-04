@@ -38,7 +38,6 @@ namespace FotoMagic.GUI
             {
                 if (c.ToString().Equals(customerToRemove))
                 {
-                    Debug.WriteLine("yes");
                     customersList.Remove(c);
                     return;
                 }

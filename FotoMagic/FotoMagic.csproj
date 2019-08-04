@@ -116,6 +116,7 @@
     <Content Include="Resources\CustomersList.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\DarkenForm.png" />
     <Content Include="Resources\FotoMagicIcon.ico" />
   </ItemGroup>
   <ItemGroup />

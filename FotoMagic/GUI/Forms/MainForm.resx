@@ -183,56 +183,11 @@
   <data name="&gt;&gt;btnAddCustomer.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <metadata name="lineShape3.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>60, 123, 200, 0</value>
-  </metadata>
-  <metadata name="lineShape3.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>60, 123</value>
-  </metadata>
-  <metadata name="lineShape3.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>200, 0</value>
-  </metadata>
-  <metadata name="lineShape2.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>33, 431, 757, 0</value>
-  </metadata>
-  <metadata name="lineShape2.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>33, 431</value>
-  </metadata>
-  <metadata name="lineShape2.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>757, 0</value>
-  </metadata>
-  <metadata name="lineShape1.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>34, 61, 756, 0</value>
-  </metadata>
-  <metadata name="lineShape1.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>34, 61</value>
-  </metadata>
-  <metadata name="lineShape1.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>756, 0</value>
-  </metadata>
   <data name="shapeContainer1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="shapeContainer1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
-  </data>
-  <data name="shapeContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>828, 486</value>
-  </data>
-  <data name="shapeContainer1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.Name" xml:space="preserve">
-    <value>shapeContainer1</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.Type" xml:space="preserve">
-    <value>Microsoft.VisualBasic.PowerPacks.ShapeContainer, Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;shapeContainer1.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <metadata name="lineShape3.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>60, 123, 200, 0</value>
@@ -267,6 +222,9 @@
   <metadata name="lineShape2.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>757, 0</value>
   </metadata>
+  <data name="lineShape2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
   <data name="lineShape2.BorderColor" type="System.Drawing.Color, System.Drawing">
     <value>45, 45, 45</value>
   </data>
@@ -291,6 +249,9 @@
   <metadata name="lineShape1.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>756, 0</value>
   </metadata>
+  <data name="lineShape1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="lineShape1.BorderColor" type="System.Drawing.Color, System.Drawing">
     <value>45, 45, 45</value>
   </data>
@@ -305,6 +266,24 @@
   </data>
   <data name="lineShape1.Y2" type="System.Int32, mscorlib">
     <value>61</value>
+  </data>
+  <data name="shapeContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>828, 486</value>
+  </data>
+  <data name="shapeContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.Name" xml:space="preserve">
+    <value>shapeContainer1</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.Type" xml:space="preserve">
+    <value>Microsoft.VisualBasic.PowerPacks.ShapeContainer, Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;shapeContainer1.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="lstCustomers.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -331,7 +310,7 @@
     <value>Calamity, 12pt</value>
   </data>
   <data name="lstCustomers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 66</value>
+    <value>281, 65</value>
   </data>
   <data name="lstCustomers.Size" type="System.Drawing.Size, System.Drawing">
     <value>505, 360</value>
@@ -385,7 +364,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnRemoveCustomer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 176</value>
+    <value>75, 175</value>
   </data>
   <data name="btnRemoveCustomer.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 36</value>

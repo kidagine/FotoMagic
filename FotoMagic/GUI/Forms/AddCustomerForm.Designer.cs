@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCustomerForm));
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.rctBlueLast = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
@@ -41,6 +42,8 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.lblCustomerLastName = new System.Windows.Forms.Label();
             this.txbCustomerLastName = new System.Windows.Forms.TextBox();
+            this.lblError = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
             // shapeContainer1
@@ -63,6 +66,7 @@
             this.rctBlueLast.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
             this.rctBlueLast.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(155)))), ((int)(((byte)(243)))));
             this.rctBlueLast.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(155)))), ((int)(((byte)(243)))));
+            this.rctBlueLast.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid;
             this.rctBlueLast.Location = new System.Drawing.Point(139, 189);
             this.rctBlueLast.Name = "rctBlueLast";
             this.rctBlueLast.Size = new System.Drawing.Size(4, 17);
@@ -73,6 +77,7 @@
             this.rctBlueFirst.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
             this.rctBlueFirst.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(155)))), ((int)(((byte)(243)))));
             this.rctBlueFirst.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(155)))), ((int)(((byte)(243)))));
+            this.rctBlueFirst.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid;
             this.rctBlueFirst.Location = new System.Drawing.Point(138, 93);
             this.rctBlueFirst.Name = "rctBlueFirst";
             this.rctBlueFirst.Size = new System.Drawing.Size(4, 17);
@@ -119,8 +124,10 @@
             this.txbCustomerFirstName.TabStop = false;
             this.txbCustomerFirstName.Text = "Enter the customer\'s first name";
             this.txbCustomerFirstName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txbCustomerFirstName.TextChanged += new System.EventHandler(this.TxbCustomerFirstName_TextChanged);
             this.txbCustomerFirstName.Enter += new System.EventHandler(this.TxbCustomerFirstName_Enter);
             this.txbCustomerFirstName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxbCustomerFirstName_KeyDown);
+            this.txbCustomerFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbCustomerFirstName_KeyPress);
             this.txbCustomerFirstName.Leave += new System.EventHandler(this.TxbCustomerFirstName_Leave);
             // 
             // btnConfirm
@@ -130,7 +137,7 @@
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Calamity", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(223)))), ((int)(((byte)(223)))));
-            this.btnConfirm.Location = new System.Drawing.Point(217, 300);
+            this.btnConfirm.Location = new System.Drawing.Point(225, 310);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(197, 46);
             this.btnConfirm.TabIndex = 4;
@@ -155,7 +162,7 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Calamity", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(155)))), ((int)(((byte)(243)))));
-            this.btnExit.Location = new System.Drawing.Point(252, 352);
+            this.btnExit.Location = new System.Drawing.Point(260, 362);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(131, 23);
             this.btnExit.TabIndex = 6;
@@ -180,15 +187,37 @@
             this.txbCustomerLastName.Font = new System.Drawing.Font("Calamity", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbCustomerLastName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(126)))), ((int)(((byte)(126)))));
             this.txbCustomerLastName.Location = new System.Drawing.Point(138, 219);
-            this.txbCustomerLastName.Multiline = true;
+            this.txbCustomerLastName.MinimumSize = new System.Drawing.Size(384, 45);
             this.txbCustomerLastName.Name = "txbCustomerLastName";
-            this.txbCustomerLastName.Size = new System.Drawing.Size(384, 45);
+            this.txbCustomerLastName.Size = new System.Drawing.Size(384, 24);
             this.txbCustomerLastName.TabIndex = 8;
             this.txbCustomerLastName.TabStop = false;
             this.txbCustomerLastName.Text = "Enter the customer\'s last name";
             this.txbCustomerLastName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txbCustomerLastName.TextChanged += new System.EventHandler(this.TxbCustomerLastName_TextChanged);
             this.txbCustomerLastName.Enter += new System.EventHandler(this.TxbCustomerLastName_Enter);
+            this.txbCustomerLastName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxbCustomerLastName_KeyDown);
+            this.txbCustomerLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbCustomerLastName_KeyPress);
             this.txbCustomerLastName.Leave += new System.EventHandler(this.TxbCustomerLastName_Leave);
+            // 
+            // lblError
+            // 
+            this.lblError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblError.Font = new System.Drawing.Font("Calamity", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(81)))), ((int)(((byte)(48)))));
+            this.lblError.Location = new System.Drawing.Point(136, 273);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(384, 18);
+            this.lblError.TabIndex = 9;
+            this.lblError.Text = "<error>";
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // AddCustomerForm
             // 
@@ -196,6 +225,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(223)))), ((int)(((byte)(223)))));
             this.ClientSize = new System.Drawing.Size(630, 418);
+            this.ControlBox = false;
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.txbCustomerLastName);
             this.Controls.Add(this.lblCustomerLastName);
             this.Controls.Add(this.btnExit);
@@ -206,10 +237,12 @@
             this.Controls.Add(this.shapeContainer1);
             this.Font = new System.Drawing.Font("Calamity", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Coral;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddCustomerForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FotoMagic";
             this.Load += new System.EventHandler(this.AddCustomerForm_Load);
@@ -231,5 +264,7 @@
         private System.Windows.Forms.Label lblCustomerLastName;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rctBlueLast;
         private System.Windows.Forms.TextBox txbCustomerLastName;
+        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

@@ -89,6 +89,7 @@
             // lstCustomers
             // 
             resources.ApplyResources(this.lstCustomers, "lstCustomers");
+            this.lstCustomers.AutoArrange = false;
             this.lstCustomers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.lstCustomers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstCustomers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -100,6 +101,7 @@
             this.lstCustomers.HideSelection = false;
             this.lstCustomers.MultiSelect = false;
             this.lstCustomers.Name = "lstCustomers";
+            this.lstCustomers.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstCustomers.UseCompatibleStateImageBehavior = false;
             this.lstCustomers.View = System.Windows.Forms.View.Details;
             // 

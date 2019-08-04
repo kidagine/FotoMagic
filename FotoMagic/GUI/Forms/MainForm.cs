@@ -29,7 +29,6 @@ namespace FotoMagic
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
         }
 
         private void BtnAddCustomer_Click(object sender, EventArgs e)
@@ -69,7 +68,7 @@ namespace FotoMagic
 
         private void BtnRemoveCustomer_Click(object sender, EventArgs e)
         {
-            if (lstCustomers.SelectedItems != null)
+            if (lstCustomers.SelectedItems.Count > 0)
             {
                 string firstName = lstCustomers.SelectedItems[0].SubItems[0].Text;
                 string lastName = lstCustomers.SelectedItems[0].SubItems[1].Text;
@@ -112,6 +111,11 @@ namespace FotoMagic
                     lstCustomers.Items.Add(rowCustomers);
                 }
             }
+        }
+
+        private void RectangleShape1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
