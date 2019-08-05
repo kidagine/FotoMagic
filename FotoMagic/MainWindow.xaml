@@ -1,0 +1,67 @@
+﻿<Window x:Class="FotoMagic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FotoMagic"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="495.368" Width="877.248" WindowStartupLocation="CenterScreen" Icon="Resources/Images/FotoMagicIcon.ico">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="MinWidth" Value="250"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                        CornerRadius="3"
+                        BorderBrush="#000"
+                        BorderThickness="0"
+                        Background="#fff">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                        Focusable="false"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF1D9BF3"/>
+                                <Setter Property="BorderThickness" TargetName="border" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF1D9BF3"/>
+                                <Setter Property="BorderThickness"  TargetName="border" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FFEBEBEB">
+        <Rectangle Fill="#FFF0F0F0" HorizontalAlignment="Left" Height="381" Margin="0,56,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="324"/>
+        <Button Content="Add +" HorizontalAlignment="Left" Padding="0,0,140,0" Margin="65,159,0,0" VerticalAlignment="Top" Width="235" Click="Button_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52"/>
+        <Rectangle x:Name="rctDarken" HorizontalAlignment="Left" Height="464" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="869" Fill="#FF2D2D2D" Opacity="0.465" Visibility="Hidden" MouseDown="RctDarken_MouseDown"/>
+        <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,55,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
+        <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,436,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
+        <Label Content="Customers" HorizontalAlignment="Left" Margin="65,17,0,0" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="24" FontFamily="Montserrat Medium" RenderTransformOrigin="0.51,1.483"/>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="57" Margin="57,71,0,0" TextWrapping="Wrap" Text="Search customer" VerticalAlignment="Top" Width="99" TextAlignment="Center" Foreground="#FF7E7E7E" TextChanged="TextBox_TextChanged" GotFocus="TxtSearch_GotFocus" LostFocus="TxtSearch_LostFocus"/>
+        <ListView x:Name="lstCustomers" HorizontalAlignment="Left" Height="370" Margin="364,61,0,0" VerticalAlignment="Top" Width="460" Background="Transparent" BorderBrush="Transparent" FontFamily="Montserrat" FontSize="14">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="FirstName"
+                                    DisplayMemberBinding="{Binding FirstName}" Width="200"/>
+                    <GridViewColumn Header="LastName"
+                                    DisplayMemberBinding="{Binding LastName}" Width="200"/>
+                    <GridViewColumn Header="OwedMoney"
+                                    DisplayMemberBinding="{Binding OwedMoney}" Width="200"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnRemove" Content="Delete -" HorizontalAlignment="Left" Padding="0,0,125,0" Margin="65,214,0,0" VerticalAlignment="Top" Width="235" Click="BtnRemove_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52"/>
+        <Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1" Margin="65,145,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235"/>
+    </Grid>
+</Window>
