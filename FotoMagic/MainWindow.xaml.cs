@@ -62,10 +62,11 @@ namespace FotoMagic
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             rctDarken.Visibility = Visibility.Visible;
             AddCustomerWindow addCustomerWindow = new AddCustomerWindow();
+            addCustomerWindow.Owner = this;
             addCustomerWindow.Show();
         }
 
@@ -138,6 +139,18 @@ namespace FotoMagic
             if (txtSearch.Text.Equals(""))
             {
                 txtSearch.Text = PlaceholderSearch;
+            }
+        }
+
+        private void LstCustomers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lstCustomers.SelectedItems.Count > 0)
+            {
+                rctDarken.Visibility = Visibility.Visible;
+                Customer customer = (Customer)lstCustomers.SelectedItems[0];
+                CustomerDetailsWindow customerDetailsWindow = new CustomerDetailsWindow(customer);
+                customerDetailsWindow.Owner = this;
+                customerDetailsWindow.Show();
             }
         }
     }

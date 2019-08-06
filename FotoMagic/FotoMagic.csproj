@@ -58,7 +58,14 @@
     <Compile Include="AddCustomerWindow.xaml.cs">
       <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddDateWindow.xaml.cs">
+      <DependentUpon>AddDateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BE\Customer.cs" />
+    <Compile Include="BE\Date.cs" />
+    <Compile Include="CustomerDetailsWindow.xaml.cs">
+      <DependentUpon>CustomerDetailsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -72,6 +79,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="AddCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddDateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerDetailsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

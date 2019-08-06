@@ -57,6 +57,12 @@ namespace FotoMagic.Model
             WriteToTextFile();
         }
 
+        public void CreateDate(String owedDate, float owedMoney)
+        {
+            Date date = new Date(owedDate, owedMoney);
+            CustomerDetailsWindow.customerDetailsWindow.LoadDate(date); 
+        }
+
         private void WriteToTextFile()
         {
             using (TextWriter tw = new StreamWriter(FILEPATH))

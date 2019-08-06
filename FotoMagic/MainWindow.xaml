@@ -43,21 +43,21 @@
     </Window.Resources>
     <Grid Background="#FFEBEBEB">
         <Rectangle Fill="#FFF0F0F0" HorizontalAlignment="Left" Height="381" Margin="0,56,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="324"/>
-        <Button Content="Add +" HorizontalAlignment="Left" Padding="0,0,140,0" Margin="65,159,0,0" VerticalAlignment="Top" Width="235" Click="Button_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52"/>
+        <Button Content="Add +" HorizontalAlignment="Left" Padding="0,0,140,0" Margin="65,159,0,0" VerticalAlignment="Top" Width="235" Click="BtnAdd_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52"/>
         <Rectangle x:Name="rctDarken" HorizontalAlignment="Left" Height="464" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="869" Fill="#FF2D2D2D" Opacity="0.465" Visibility="Hidden" MouseDown="RctDarken_MouseDown"/>
         <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,55,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
         <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,436,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
-        <Label Content="Customers" HorizontalAlignment="Left" Margin="65,17,0,0" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="24" FontFamily="Montserrat Medium" RenderTransformOrigin="0.51,1.483"/>
+        <Label Content="Customers" HorizontalAlignment="Left" Margin="65,17,0,0" VerticalAlignment="Top" Foreground="#FF252526" FontSize="24" FontFamily="Montserrat Medium" RenderTransformOrigin="0.51,1.483"/>
         <TextBox x:Name="txtSearch" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="57" Margin="57,71,0,0" TextWrapping="Wrap" Text="Search customer" VerticalAlignment="Top" Width="99" TextAlignment="Center" Foreground="#FF7E7E7E" TextChanged="TextBox_TextChanged" GotFocus="TxtSearch_GotFocus" LostFocus="TxtSearch_LostFocus"/>
-        <ListView x:Name="lstCustomers" HorizontalAlignment="Left" Height="370" Margin="364,61,0,0" VerticalAlignment="Top" Width="460" Background="Transparent" BorderBrush="Transparent" FontFamily="Montserrat" FontSize="14">
+        <ListView x:Name="lstCustomers" HorizontalAlignment="Left" Height="370" Margin="364,61,0,0" VerticalAlignment="Top" Width="460" Background="Transparent" BorderBrush="Transparent" FontFamily="Montserrat" FontSize="14" MouseDoubleClick="LstCustomers_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="FirstName"
-                                    DisplayMemberBinding="{Binding FirstName}" Width="200"/>
+                                    DisplayMemberBinding="{Binding FirstName}" Width="150"/>
                     <GridViewColumn Header="LastName"
-                                    DisplayMemberBinding="{Binding LastName}" Width="200"/>
+                                    DisplayMemberBinding="{Binding LastName}" Width="150"/>
                     <GridViewColumn Header="OwedMoney"
-                                    DisplayMemberBinding="{Binding OwedMoney}" Width="200"/>
+                                    DisplayMemberBinding="{Binding OwedMoney}" Width="150"/>
                 </GridView>
             </ListView.View>
         </ListView>

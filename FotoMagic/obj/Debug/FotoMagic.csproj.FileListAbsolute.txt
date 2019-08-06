@@ -17,3 +17,7 @@ C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\Foto
 C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\FotoMagic.csprojAssemblyReference.cache
 C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\AddCustomerWindow.g.cs
 C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\AddCustomerWindow.baml
+C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\CustomerDetailsWindow.g.cs
+C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\CustomerDetailsWindow.baml
+C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\AddDateWindow.g.cs
+C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\AddDateWindow.baml
