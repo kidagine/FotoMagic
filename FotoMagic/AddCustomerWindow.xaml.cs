@@ -152,7 +152,7 @@ namespace FotoMagic
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.mainWindow.HideDarkenRectangle();
-            this.Hide();
+            this.Close();
         }
 
         private void TxtFirstName_TextChanged(object sender, TextChangedEventArgs e)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FotoMagic"
         mc:Ignorable="d"
-        Title="CustomerDetailsWindow" Height="554.224" Width="565.803">
+        Title="FotoMagic" Height="554.224" Width="565.803" WindowStartupLocation="CenterOwner" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
         <Label x:Name="lblCustomerName" Content="&lt;Customer Name&gt;" HorizontalAlignment="Left" Margin="24,25,0,0" VerticalAlignment="Top" Foreground="#FF252526" FontFamily="Montserrat Medium" FontSize="18"/>
         <ListView x:Name="lstDates" HorizontalAlignment="Left" Height="342" Margin="71,95,0,0" VerticalAlignment="Top" Width="424">
@@ -19,7 +19,8 @@
             </ListView.View>
         </ListView>
         <Button x:Name="btnAdd" Content="Button" HorizontalAlignment="Left" Margin="154,479,0,0" VerticalAlignment="Top" Width="75" Click="BtnAdd_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="314,479,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnRemove" Content="Button" HorizontalAlignment="Left" Margin="314,479,0,0" VerticalAlignment="Top" Width="75" Click="BtnRemove_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="413,42,0,0" VerticalAlignment="Top" Width="75"  Click="BtnExit_Click"/>
 
     </Grid>
 </Window>

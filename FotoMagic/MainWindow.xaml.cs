@@ -73,6 +73,13 @@ namespace FotoMagic
         private void RctDarken_MouseDown(object sender, MouseButtonEventArgs e)
         {
             HideDarkenRectangle();
+            foreach (Window ownedWindow in this.OwnedWindows)
+            {
+                if (ownedWindow != null)
+                {
+                    ownedWindow.Close();
+                }
+            }
         }
 
         public void HideDarkenRectangle()

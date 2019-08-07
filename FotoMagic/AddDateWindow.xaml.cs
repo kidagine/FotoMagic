@@ -69,5 +69,13 @@ namespace FotoMagic
                 e.Handled = true;
             }
         }
+
+        private void TxtMoney_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
