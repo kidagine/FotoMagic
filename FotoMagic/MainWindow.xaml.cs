@@ -2,6 +2,7 @@
 using FotoMagic.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,8 @@ namespace FotoMagic
     {
 
         public static MainWindow mainWindow;
-        private const string FILEPATH = @"C:\Users\Kiddo\Desktop\Code\C#\Fotomagic\FotoMagic\FotoMagic\Resources\CustomersList.txt";
+        private const string FILEPATHCUSTOMERS = @"C:\Users\Kiddo\Desktop\Code\C#\Fotomagic\FotoMagic\FotoMagic\Resources\CustomersList.txt";
+        private const string FILEPATHDATES = @"C:\Users\Kiddo\Desktop\Code\C#\Fotomagic\FotoMagic\FotoMagic\Resources\DatesList.txt";
         private const string PlaceholderSearch = "Search customer";
         private MainModel model;
 
@@ -41,24 +43,69 @@ namespace FotoMagic
         private void LoadCustomerList()
         {
             lstCustomers.Items.Clear();
-            using (StreamReader sr = new StreamReader(FILEPATH))
+            using (StreamReader srDates = new StreamReader(FILEPATHDATES))
             {
-                string line = "";
-                while ((line = sr.ReadLine()) != null)
+                string dateLine = "";
+                while ((dateLine = srDates.ReadLine()) != null)
                 {
-                    string[] lines = line.Split(' ');
-                    Customer customer = new Customer(lines[0], lines[1], int.Parse(lines[2]));
-                    lstCustomers.Items.Add(customer);
-                    model.LoadCustomer(customer);
+                    string[] dateLines = dateLine.Split(' ');
+                    Date date = new Date(dateLines[0], dateLines[1], dateLines[2], float.Parse(dateLines[3])); ;
+                    model.LoadDate(date);
+                }
+            }
+            using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
+            {
+                string lineCustomer = "";
+                while ((lineCustomer = sr.ReadLine()) != null)
+                {
+                    string[] linesCustomer = lineCustomer.Split(' ');
+                    LoadCorrectCustomerData(linesCustomer);
+                }
+            }
+            SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
+            lstCustomers.Items.SortDescriptions.Add(sortDescription);
+        }
+
+        private void LoadCorrectCustomerData(string[] linesCustomer)
+        {
+            bool test = false;
+            foreach (Date date in model.GetDatesList())
+            {
+                if (!test)
+                {
+                    if (date.FirstName.Equals(linesCustomer[0]))
+                    {
+                        Customer customer = new Customer(linesCustomer[0], linesCustomer[1], date.OwedMoney);
+                        lstCustomers.Items.Add(customer);
+                        model.LoadCustomer(customer);
+                        test = true;
+                    }
+                    else
+                    {
+                        Customer customer = new Customer(linesCustomer[0], linesCustomer[1], float.Parse(linesCustomer[2]));
+                        lstCustomers.Items.Add(customer);
+                        model.LoadCustomer(customer);
+                        test = true;
+                    }
                 }
             }
         }
 
         public void LoadCustomer(Customer customer)
         {
-            using (StreamReader sr = new StreamReader(FILEPATH))
+            using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
             {
-                lstCustomers.Items.Add(customer);
+                for (int i = 0; i < lstCustomers.Items.Count; i++)
+                {
+                    Customer customerToCheck = (Customer)lstCustomers.Items[i];
+                    string customerFullName = customerToCheck.FirstName + " " + customerToCheck.LastName;
+                    if (customerFullName.Equals(customer.FirstName + " " + customer.LastName))
+                    {
+                        lstCustomers.Items.RemoveAt(i);
+                    }                     
+                }
+                SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
+                lstCustomers.Items.SortDescriptions.Add(sortDescription);
             }
         }
 
@@ -96,12 +143,14 @@ namespace FotoMagic
                 lstCustomers.Items.Remove(lstCustomers.SelectedItems[0]);
                 model.RemoveCustomer(lineToRemove);
                 RemoveCustomer(lineToRemove);
+                SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
+                lstCustomers.Items.SortDescriptions.Add(sortDescription);
             }
         }
 
         private void RemoveCustomer(string lineToRemove)
         {
-            using (StreamReader sr = new StreamReader(FILEPATH))
+            using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
             using (StreamWriter sw = new StreamWriter("tempFile.txt"))
             {
                 string line;
@@ -113,8 +162,8 @@ namespace FotoMagic
                     }
                 }
             }
-            File.Delete(FILEPATH);
-            File.Move("tempFile.txt", FILEPATH);
+            File.Delete(FILEPATHCUSTOMERS);
+            File.Move("tempFile.txt", FILEPATHCUSTOMERS);
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

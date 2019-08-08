@@ -33,10 +33,17 @@ namespace FotoMagic
 
         private void BtnAddDate_Click(object sender, RoutedEventArgs e)
         {
-            if (!txtMoney.Text.Equals("") || (!txtMoney.Text.Equals(PlaceholderMoneyText)) && (!dtpDate.Text.Equals("")))
+            if (!txtMoney.Text.Equals("") && (!txtMoney.Text.Equals(PlaceholderMoneyText)) && (!dtpDate.Text.Equals("")))
             {
-                mainModel.CreateDate(dtpDate.Text, float.Parse(txtMoney.Text));
+                string firstName = CustomerDetailsWindow.customerDetailsWindow.customerFirstName;
+                string lastName = CustomerDetailsWindow.customerDetailsWindow.customerLastName;
+                mainModel.CreateDate(firstName, lastName, dtpDate.Text, float.Parse(txtMoney.Text));
                 this.Hide();
+            }
+            else
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = "Both fields have to be filled";
             }
         }
 
@@ -58,7 +65,14 @@ namespace FotoMagic
 
         private void TxtMoney_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!txtMoney.Text.Equals(PlaceholderMoneyText))
+            {
+                if (!txtMoney.Text.Equals("") && !dtpDate.Text.Equals(""))
+                {
+                    lblError.Visibility = Visibility.Visible;
+                    lblError.Content = "";
+                }
+            }
         }
 
         private void TxtMoney_PreviewInput(object sender, TextCompositionEventArgs e)

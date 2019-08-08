@@ -42,9 +42,10 @@
         </Style>
     </Window.Resources>
     <Grid Background="#FFEBEBEB">
-        <TextBox x:Name="txtMoney" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="41" Margin="32,84,0,0" TextWrapping="Wrap" Text="Enter the money amount" VerticalAlignment="Top" Width="182" FontFamily="Montserrat" FontSize="12" Foreground="#FF7E7E7E" GotFocus="TxtMoney_GotFocus" LostFocus="TxtMoney_LostFocus" TextChanged="TxtMoney_TextChanged" PreviewTextInput="TxtMoney_PreviewInput" PreviewKeyDown="TxtMoney_PreviewKeyDown"/>
-        <DatePicker x:Name="dtpDate" HorizontalAlignment="Left" Margin="312,84,0,0" VerticalAlignment="Top" Height="32"/>
+        <TextBox x:Name="txtMoney" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="41" Margin="33,59,0,0" TextWrapping="Wrap" Text="Enter the money amount" VerticalAlignment="Top" Width="182" FontFamily="Montserrat" FontSize="12" Foreground="#FF7E7E7E" GotFocus="TxtMoney_GotFocus" LostFocus="TxtMoney_LostFocus" TextChanged="TxtMoney_TextChanged" PreviewTextInput="TxtMoney_PreviewInput" PreviewKeyDown="TxtMoney_PreviewKeyDown"/>
+        <DatePicker x:Name="dtpDate" HorizontalAlignment="Left" Margin="311,67,0,0" VerticalAlignment="Top" Height="32"/>
         <Button x:Name="btnAddDate" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="193,155,0,0" Click="BtnAddDate_Click"/>
+        <Label  x:Name="lblError" Content="error" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="46,130,59,0" VerticalAlignment="Top" Foreground="#FFFF5130" Width="378" FontFamily="Montserrat" Visibility="Hidden"/>
 
     </Grid>
 </Window>
