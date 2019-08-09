@@ -38,7 +38,7 @@ namespace FotoMagic
                 string firstName = CustomerDetailsWindow.customerDetailsWindow.customerFirstName;
                 string lastName = CustomerDetailsWindow.customerDetailsWindow.customerLastName;
                 mainModel.CreateDate(firstName, lastName, dtpDate.Text, float.Parse(txtMoney.Text));
-                this.Hide();
+                this.Close();
             }
             else
             {

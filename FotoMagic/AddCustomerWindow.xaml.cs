@@ -239,5 +239,13 @@ namespace FotoMagic
                 e.Handled = true;
             }
         }
+
+        private void TxtLastName_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

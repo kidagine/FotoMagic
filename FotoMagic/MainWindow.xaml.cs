@@ -68,26 +68,31 @@ namespace FotoMagic
 
         private void LoadCorrectCustomerData(string[] linesCustomer)
         {
-            bool test = false;
-            foreach (Date date in model.GetDatesList())
+            bool wasAdded = false;
+            float totalOwedMoney = 0.0f;
+            for (int i = 0; i < model.GetDatesList().Count; i++)
             {
-                if (!test)
+                if (!wasAdded)
                 {
-                    if (date.FirstName.Equals(linesCustomer[0]))
+                    if (model.GetDatesList()[i].FirstName.Equals(linesCustomer[0]))
                     {
-                        Customer customer = new Customer(linesCustomer[0], linesCustomer[1], date.OwedMoney);
-                        lstCustomers.Items.Add(customer);
-                        model.LoadCustomer(customer);
-                        test = true;
-                    }
-                    else
-                    {
-                        Customer customer = new Customer(linesCustomer[0], linesCustomer[1], float.Parse(linesCustomer[2]));
-                        lstCustomers.Items.Add(customer);
-                        model.LoadCustomer(customer);
-                        test = true;
+                        Debug.WriteLine(model.GetDatesList()[i].OwedMoney + ", ");
+                        totalOwedMoney += model.GetDatesList()[i].OwedMoney;
                     }
                 }
+            }
+            if (totalOwedMoney > 0.0f)
+            {
+                Customer customer = new Customer(linesCustomer[0], linesCustomer[1], totalOwedMoney);
+                lstCustomers.Items.Add(customer);
+                model.LoadCustomer(customer);
+                wasAdded = true;
+            }
+            if (!wasAdded)
+            {
+                Customer customer = new Customer(linesCustomer[0], linesCustomer[1], float.Parse(linesCustomer[2]));
+                lstCustomers.Items.Add(customer);
+                model.LoadCustomer(customer);
             }
         }
 
@@ -102,8 +107,9 @@ namespace FotoMagic
                     if (customerFullName.Equals(customer.FirstName + " " + customer.LastName))
                     {
                         lstCustomers.Items.RemoveAt(i);
-                    }                     
+                    }
                 }
+                lstCustomers.Items.Add(customer);
                 SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
                 lstCustomers.Items.SortDescriptions.Add(sortDescription);
             }
@@ -168,7 +174,7 @@ namespace FotoMagic
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!txtSearch.Text.Equals(PlaceholderSearch))
+            if (!txtSearch.Text.Equals(PlaceholderSearch) && !txtSearch.Text.Equals(""))
             {
                 lstCustomers.Items.Clear();
                 foreach (Customer c in model.GetCustomersList())
