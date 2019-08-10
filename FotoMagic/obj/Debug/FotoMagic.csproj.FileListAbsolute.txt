@@ -21,3 +21,4 @@ C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\Cust
 C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\CustomerDetailsWindow.baml
 C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\AddDateWindow.g.cs
 C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\AddDateWindow.baml
+C:\Users\Kiddo\Desktop\Code\C#\New folder (5)\FotoMagic\FotoMagic\obj\Debug\App.baml

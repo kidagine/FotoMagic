@@ -9,13 +9,11 @@ namespace FotoMagic.BE
     public class Customer
     {
 
-
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public float OwedMoney { get; set; }
+        public string OwedMoney { get; set; }
 
-        public Customer(string firstName, string lastName, float owedMoney)
+        public Customer(string firstName, string lastName, string owedMoney)
         {
             FirstName = firstName;
             LastName = lastName;

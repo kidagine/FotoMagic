@@ -117,7 +117,7 @@ namespace FotoMagic
             MainWindow.mainWindow.HideDarkenRectangle();
             this.Close();
             string[] customerName = lblCustomerName.Content.ToString().Split(' ');
-            Customer customer = new Customer(customerName[0], customerName[1], GetTotalOwedMoney());
+            Customer customer = new Customer(customerName[0], customerName[1], GetTotalOwedMoney().ToString());
             MainWindow.mainWindow.LoadCustomer(customer);
         }
 

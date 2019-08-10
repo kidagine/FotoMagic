@@ -76,21 +76,20 @@ namespace FotoMagic
                 {
                     if (model.GetDatesList()[i].FirstName.Equals(linesCustomer[0]))
                     {
-                        Debug.WriteLine(model.GetDatesList()[i].OwedMoney + ", ");
                         totalOwedMoney += model.GetDatesList()[i].OwedMoney;
                     }
                 }
             }
             if (totalOwedMoney > 0.0f)
             {
-                Customer customer = new Customer(linesCustomer[0], linesCustomer[1], totalOwedMoney);
+                Customer customer = new Customer(linesCustomer[0], linesCustomer[1], totalOwedMoney.ToString());
                 lstCustomers.Items.Add(customer);
                 model.LoadCustomer(customer);
                 wasAdded = true;
             }
             if (!wasAdded)
             {
-                Customer customer = new Customer(linesCustomer[0], linesCustomer[1], float.Parse(linesCustomer[2]));
+                Customer customer = new Customer(linesCustomer[0], linesCustomer[1], linesCustomer[2]);
                 lstCustomers.Items.Add(customer);
                 model.LoadCustomer(customer);
             }
@@ -174,7 +173,8 @@ namespace FotoMagic
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!txtSearch.Text.Equals(PlaceholderSearch) && !txtSearch.Text.Equals(""))
+            TextBoxToProperCase(txtSearch);
+            if (!txtSearch.Text.Equals(PlaceholderSearch))
             {
                 lstCustomers.Items.Clear();
                 foreach (Customer c in model.GetCustomersList())
@@ -185,6 +185,22 @@ namespace FotoMagic
                         lstCustomers.Items.Add(customer);
                     }
                 }
+                SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
+                lstCustomers.Items.SortDescriptions.Add(sortDescription);
+            }
+
+        }
+
+        private void TextBoxToProperCase(TextBox textBox)
+        {
+            if (!textBox.Text.Equals(""))
+            {
+                char[] v = textBox.Text.ToCharArray();
+                string s = v[0].ToString().ToUpper();
+                for (int b = 1; b < v.Length; b++)
+                    s += v[b].ToString().ToLower();
+                textBox.Text = s;
+                textBox.Select(textBox.Text.Length, 0);
             }
         }
 
@@ -193,6 +209,7 @@ namespace FotoMagic
             if (txtSearch.Text.Equals(PlaceholderSearch))
             {
                 txtSearch.Text = "";
+                txtSearch.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             }
         }
 
@@ -201,6 +218,7 @@ namespace FotoMagic
             if (txtSearch.Text.Equals(""))
             {
                 txtSearch.Text = PlaceholderSearch;
+                txtSearch.Foreground = new SolidColorBrush(Color.FromRgb(126, 126, 126));
             }
         }
 

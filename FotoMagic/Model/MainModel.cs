@@ -75,7 +75,7 @@ namespace FotoMagic.Model
 
         public void CreateCustomer(String firstName, string lastName, float owedMoney)
         {
-            Customer customer = new Customer(firstName, lastName, owedMoney);
+            Customer customer = new Customer(firstName, lastName, owedMoney.ToString());
             customersList.Add(customer);
             MainWindow.mainWindow.LoadCustomer(customer);
             WriteToTextFileCustomer();

@@ -122,7 +122,15 @@ namespace FotoMagic
 
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            ConfirmCustomer();
+            if (txtFirstName.Text.Equals("") || txtFirstName.Text.Equals(PlaceholderFirstName) || txtLastName.Text.Equals("") || txtLastName.Text.Equals(PlaceholderLastName))
+            {
+                lblError.Visibility = Visibility.Visible;
+                lblError.Content = ErrorEmptyTextBox;
+            }
+            else
+            {
+                ConfirmCustomer();
+            }
         }
 
         private void ConfirmCustomer()
