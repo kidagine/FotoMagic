@@ -25,10 +25,12 @@ namespace FotoMagic
     {
 
         private const string FILEPATH = @"C:\Users\Kiddo\Desktop\Code\C#\Fotomagic\FotoMagic\FotoMagic\Resources\DatesList.txt";
+        private const string PlaceholderSearch = "Search date";
         public static CustomerDetailsWindow customerDetailsWindow;
         public string customerFirstName;
         public string customerLastName;
         private MainModel model;
+        private List<Date> datesList = new List<Date>();
 
 
         public CustomerDetailsWindow(Customer customer)
@@ -42,6 +44,7 @@ namespace FotoMagic
         public void LoadDate(Date date)
         {
             lstDates.Items.Add(date);
+            datesList.Add(date);
             SortDescription sortDescription = new SortDescription("OwedDate", ListSortDirection.Ascending);
             lstDates.Items.SortDescriptions.Add(sortDescription);
         }
@@ -66,6 +69,7 @@ namespace FotoMagic
                     {
                         Date date = new Date(lines[0], lines[1], lines[2], float.Parse(lines[3]));
                         lstDates.Items.Add(date);
+                        datesList.Add(date);
                     }
                 }
             }
@@ -73,8 +77,26 @@ namespace FotoMagic
             lstDates.Items.SortDescriptions.Add(sortDescription);
         }
 
+        private void RctDarken_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            HideDarkenRectangle();
+            foreach (Window ownedWindow in this.OwnedWindows)
+            {
+                if (ownedWindow != null)
+                {
+                    ownedWindow.Close();
+                }
+            }
+        }
+
+        public void HideDarkenRectangle()
+        {
+            rctDarken.Visibility = Visibility.Hidden;
+        }
+
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
+            rctDarken.Visibility = Visibility.Visible;
             AddDateWindow addDateWindow = new AddDateWindow();
             addDateWindow.Owner = this;
             addDateWindow.Show();
@@ -91,6 +113,57 @@ namespace FotoMagic
                 RemoveDate(lineToRemove);
                 SortDescription sortDescription = new SortDescription("OwedDate", ListSortDirection.Ascending);
                 lstDates.Items.SortDescriptions.Add(sortDescription);
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBoxToProperCase(txtSearch);
+            if (!txtSearch.Text.Equals(PlaceholderSearch))
+            {
+                lstDates.Items.Clear();
+                foreach (Date d in datesList)
+                {
+                    if (d.OwedDate.ToLower().Contains(txtSearch.Text.ToLower()) || d.OwedMoney.ToString().ToLower().Contains(txtSearch.Text.ToLower()))
+                    {
+                        Date date = new Date(d.FirstName, d.LastName, d.OwedDate, d.OwedMoney);
+                        lstDates.Items.Add(date);
+                    }
+                }
+                SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
+                lstDates.Items.SortDescriptions.Add(sortDescription);
+            }
+
+        }
+
+        private void TextBoxToProperCase(TextBox textBox)
+        {
+            if (!textBox.Text.Equals(""))
+            {
+                char[] v = textBox.Text.ToCharArray();
+                string s = v[0].ToString().ToUpper();
+                for (int b = 1; b < v.Length; b++)
+                    s += v[b].ToString().ToLower();
+                textBox.Text = s;
+                textBox.Select(textBox.Text.Length, 0);
+            }
+        }
+
+        private void TxtSearch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtSearch.Text.Equals(PlaceholderSearch))
+            {
+                txtSearch.Text = "";
+                txtSearch.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            }
+        }
+
+        private void TxtSearch_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtSearch.Text.Equals(""))
+            {
+                txtSearch.Text = PlaceholderSearch;
+                txtSearch.Foreground = new SolidColorBrush(Color.FromRgb(126, 126, 126));
             }
         }
 

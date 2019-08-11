@@ -185,10 +185,9 @@ namespace FotoMagic
                         lstCustomers.Items.Add(customer);
                     }
                 }
-                SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
-                lstCustomers.Items.SortDescriptions.Add(sortDescription);
+            SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
+            lstCustomers.Items.SortDescriptions.Add(sortDescription);
             }
-
         }
 
         private void TextBoxToProperCase(TextBox textBox)

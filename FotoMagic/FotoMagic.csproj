@@ -133,5 +133,16 @@
   <ItemGroup>
     <Resource Include="Resources\Images\FotoMagicSplashScreen.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\DateImage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\UserImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\UserAddImage.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -52,6 +52,7 @@ namespace FotoMagic
             if (txtMoney.Text.Equals(PlaceholderMoneyText))
             {
                 txtMoney.Text = "";
+                txtMoney.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             }
         }
 
@@ -60,6 +61,7 @@ namespace FotoMagic
             if (txtMoney.Text.Equals(""))
             {
                 txtMoney.Text = PlaceholderMoneyText;
+                txtMoney.Foreground = new SolidColorBrush(Color.FromRgb(126, 126, 126));
             }
         }
 

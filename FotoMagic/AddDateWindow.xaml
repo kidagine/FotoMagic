@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FotoMagic"
         mc:Ignorable="d"
-        Title="AddDateWindow" Height="225.613" Width="488.556" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        Title="AddDateWindow" Height="425" Width="660.515" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Foreground="Transparent">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Padding" Value="5"/>
@@ -41,11 +41,34 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Background="#FFEBEBEB">
-        <TextBox x:Name="txtMoney" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="41" Margin="33,59,0,0" TextWrapping="Wrap" Text="Enter the money amount" VerticalAlignment="Top" Width="182" FontFamily="Montserrat" FontSize="12" Foreground="#FF7E7E7E" GotFocus="TxtMoney_GotFocus" LostFocus="TxtMoney_LostFocus" TextChanged="TxtMoney_TextChanged" PreviewTextInput="TxtMoney_PreviewInput" PreviewKeyDown="TxtMoney_PreviewKeyDown"/>
-        <DatePicker x:Name="dtpDate" HorizontalAlignment="Left" Margin="311,67,0,0" VerticalAlignment="Top" Height="32"/>
-        <Button x:Name="btnAddDate" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="193,155,0,0" Click="BtnAddDate_Click"/>
-        <Label  x:Name="lblError" Content="error" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="46,130,59,0" VerticalAlignment="Top" Foreground="#FFFF5130" Width="378" FontFamily="Montserrat" Visibility="Hidden"/>
-
-    </Grid>
+    <Border Background="#FFF0F0F0" BorderThickness="1,1,1,1" CornerRadius="5,5,5,5">
+        <Grid>
+            <Image HorizontalAlignment="Left"  Name="MyImg" Height="30" Margin="45,13,0,0" VerticalAlignment="Top" Width="39" Source="Resources/Images/DateImage.png" RenderTransformOrigin="0.897,0.765"/>
+            <Label Content="Add date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="95,10,0,0" FontFamily="Montserrat Medium" FontSize="20" Background="#00000000" Foreground="#FF2D2D2D"/>
+            <TextBox x:Name="txtMoney"  Text="Enter the money amount" VerticalContentAlignment="Center" Margin="155,95,154,272" Background="White" Foreground="#FF7E7E7E" TextAlignment="Center" SelectionBrush="#FF1D9BF3" BorderBrush="#FF2D2D2D" FontFamily="Montserrat" FontSize="16" GotFocus="TxtMoney_GotFocus" LostFocus="TxtMoney_LostFocus" TextChanged="TxtMoney_TextChanged" PreviewTextInput="TxtMoney_PreviewInput" PreviewKeyDown="TxtMoney_PreviewKeyDown" Style="{DynamicResource TextBoxNin}"/>
+            <DatePicker x:Name="dtpDate" HorizontalAlignment="Left" Margin="155,184,0,0" VerticalAlignment="Top" FontFamily="Montserrat" FontSize="16" Height="56" Width="350" Style="{DynamicResource DatePickerNin}"/>
+            <Button x:Name="btnAddDate" Content="Confirm" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="237,304,0,0" VerticalAlignment="Top" Width="192" Background="#FF1D9BF3" BorderBrush="#00000000" Foreground="White" Height="51" FontFamily="Montserrat" FontSize="14" Click="BtnAddDate_Click" Style="{DynamicResource ButtonNinBig}"/>
+            <Label  x:Name="lblError" Content="error" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="46,130,59,0" VerticalAlignment="Top" Foreground="#FFFF5130" Width="378" FontFamily="Montserrat" Visibility="Hidden"/>
+            <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="22,55,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="607" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="26,396,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="608" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </Grid>
+    </Border>
 </Window>

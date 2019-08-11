@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FotoMagic"
         mc:Ignorable="d"
-        Title="FotoMagic" Height="495.368" Width="877.248" WindowStartupLocation="CenterOwner" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize">
+        Title="FotoMagic" Height="495.368" Width="877.248" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="CanMinimize">
     <Window.Resources>
 
         <Style x:Key="GridViewColumnHeaderStyle1" TargetType="{x:Type GridViewColumnHeader}">
@@ -21,24 +21,87 @@
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontFamily" Value="Montserrat" />
-            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontSize" Value="20" />
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid Background="#FFEBEBEB">
         <Label x:Name="lblCustomerName" Content="&lt;Customer Name&gt;" Margin="65,17,0,0" VerticalAlignment="Top" Foreground="#FF252526" FontSize="24" FontFamily="Montserrat Medium" RenderTransformOrigin="0.51,1.483"/>
-        <ListView x:Name="lstDates" Height="370" Margin="364,65,45,37" VerticalAlignment="Top" Background="Transparent" FontFamily="Montserrat" FontSize="17" Style="{DynamicResource ListViewNin}">
+        <ListView x:Name="lstDates" Height="370" Margin="364,65,45,37" VerticalAlignment="Top" Background="Transparent" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="18" Style="{DynamicResource ListViewNin}" HorizontalAlignment="Left">
             <ListView.View>
                 <GridView  ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                     <GridViewColumn Header="Date"
-                                    DisplayMemberBinding="{Binding OwedDate}" Width="225"/>
+                                    DisplayMemberBinding="{Binding OwedDate}" Width="210"/>
                     <GridViewColumn Header="Money"
-                                    DisplayMemberBinding="{Binding OwedMoney}" Width="225"/>
+                                    DisplayMemberBinding="{Binding OwedMoney}" Width="210"/>
                 </GridView>
             </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border SnapsToDevicePixels="True"
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        Background="{TemplateBinding Background}">
+                                    <Border Name="Border" BorderBrush="#FFCDCDCD" BorderThickness="0, 0, 0, 1">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition MaxHeight="11" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <Rectangle Name="UpperHighlight" Visibility="Collapsed" Fill="#75FFFFFF" />
+                                            <GridViewRowPresenter Grid.RowSpan="2" 
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="BorderThickness" Value="2"/>
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard HandoffBehavior="Compose">
+                                                <Storyboard>
+                                                    <ColorAnimation Duration="0:0:0.5" From="#FF1769E0" To="#FF1D9BF3" AutoReverse="True" RepeatBehavior="Forever" Storyboard.TargetProperty="BorderBrush.Color" >
+                                                        <ColorAnimation.EasingFunction>
+                                                            <BackEase EasingMode="EaseInOut" Amplitude="2"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                <Storyboard>
+                                                    <ColorAnimation Duration="0:0:0" To="Transparent" Storyboard.TargetProperty="BorderBrush.Color" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#FFFBFBFB"/>
+                                        <Setter Property="BorderBrush" Value="#FF1D9BF3"/>
+                                        <Setter Property="BorderThickness" Value="2"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
         <Button x:Name="btnAdd" Content="Add +"  HorizontalAlignment="Left" Padding="0,0,140,0" Margin="65,159,0,0" VerticalAlignment="Top" Width="235" Click="BtnAdd_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52" Style="{DynamicResource ButtonNin}"/>
-        <Button x:Name="btnRemove" Content="Delete -" HorizontalAlignment="Left" Padding="0,0,140,0"  Margin="65,216,0,0" VerticalAlignment="Top" Width="235" Click="BtnRemove_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52"  Style="{DynamicResource ButtonNin}"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="104,311,0,0" VerticalAlignment="Top" Width="75"  Click="BtnExit_Click" Style="{DynamicResource ButtonNin}"/>
-
+        <Button x:Name="btnRemove" Content="Delete -" HorizontalAlignment="Left" Padding="0,0,125,0" Margin="65,220,0,0" VerticalAlignment="Top" Width="235" Click="BtnRemove_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52"  Style="{DynamicResource ButtonNin}"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="65,289,0,0" Padding="0,0,150,0" VerticalAlignment="Top" Width="235"  Click="BtnExit_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52" Style="{DynamicResource ButtonNin}"/>
+        <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,55,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
+        <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,436,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
+        <Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1.2" Margin="65,145,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235"/>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="57" Margin="57,71,0,0" TextWrapping="Wrap" Text="Search date" VerticalAlignment="Top" Width="250" TextAlignment="Center" Foreground="#FF7E7E7E" TextChanged="TextBox_TextChanged" GotFocus="TxtSearch_GotFocus" LostFocus="TxtSearch_LostFocus" Style="{DynamicResource TextBoxNin}" BorderBrush="#FF2D2D2D"/>
+        <Rectangle x:Name="rctDarken" HorizontalAlignment="Left" Height="464" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="869" Fill="#FF2D2D2D" Opacity="0.60" Visibility="Hidden" MouseDown="RctDarken_MouseDown"/>
+        <Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1.2" Margin="65,280,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235"/>
     </Grid>
 </Window>

@@ -31,6 +31,7 @@ namespace FotoMagic
         {
             InitializeComponent();
             model = MainModel.CreateInstance();
+            txtFirstName.Focus();
         }
 
         private void TxtFirstName_GotFocus(object sender, RoutedEventArgs e)

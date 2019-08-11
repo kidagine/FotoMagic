@@ -21,7 +21,7 @@
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontFamily" Value="Montserrat" />
-            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontSize" Value="20" />
         </Style>
     </Window.Resources>
     <Grid Background="#FFEBEBEB" Margin="0,0,0,-8" Opacity="50">
@@ -30,15 +30,15 @@
         <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,55,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
         <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,436,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
         <Label Content="Customers" HorizontalAlignment="Left" Margin="65,17,0,0" VerticalAlignment="Top" Foreground="#FF252526" FontSize="24" FontFamily="Montserrat Medium" RenderTransformOrigin="0.51,1.483"/>
-        <TextBox x:Name="txtSearch" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="57" Margin="57,71,0,0" TextWrapping="Wrap" Text="Search customer" VerticalAlignment="Top" Width="250" TextAlignment="Center" Foreground="#FF7E7E7E" TextChanged="TextBox_TextChanged" GotFocus="TxtSearch_GotFocus" LostFocus="TxtSearch_LostFocus" Style="{DynamicResource TextBoxNin}"/>
-        <ListView x:Name="lstCustomers" Height="370" Margin="364,65,45,37" VerticalAlignment="Top" Background="Transparent" FontFamily="Montserrat" FontSize="17" MouseDoubleClick="LstCustomers_MouseDoubleClick" Foreground="#FF2D2D2D" HorizontalAlignment="Left" Style="{DynamicResource ListViewNin}">
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="57" Margin="57,71,0,0" TextWrapping="Wrap" Text="Search customer" VerticalAlignment="Top" Width="250" TextAlignment="Center" Foreground="#FF7E7E7E" TextChanged="TextBox_TextChanged" GotFocus="TxtSearch_GotFocus" LostFocus="TxtSearch_LostFocus" Style="{DynamicResource TextBoxNin}" BorderBrush="#FF2D2D2D"/>
+        <ListView x:Name="lstCustomers" Height="370" Margin="364,65,45,37" VerticalAlignment="Top" Background="Transparent" FontFamily="Montserrat" FontSize="18" MouseDoubleClick="LstCustomers_MouseDoubleClick" Foreground="#FF2D2D2D" HorizontalAlignment="Left" Style="{DynamicResource ListViewNin}">
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                     <GridViewColumn Header="First name"
                                     DisplayMemberBinding="{Binding FirstName}" Width="140"/>
                     <GridViewColumn Header="Last name"
                                     DisplayMemberBinding="{Binding LastName}" Width="140"/>
-                    <GridViewColumn Header="oney"
+                    <GridViewColumn Header="Money"
                                     DisplayMemberBinding="{Binding OwedMoney}" Width="140"/>
                 </GridView>
             </ListView.View>
@@ -102,7 +102,7 @@
             </ListView.ItemContainerStyle>
         </ListView>
         <Button x:Name="btnRemove" Content="Delete -" HorizontalAlignment="Left" Padding="0,0,125,0" Margin="65,220,0,0" VerticalAlignment="Top" Width="235" Click="BtnRemove_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52" Style="{DynamicResource ButtonNin}"/>
-        <Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1" Margin="65,145,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235"/>
+        <Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1.2" Margin="65,145,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235"/>
         <Rectangle x:Name="rctDarken" HorizontalAlignment="Left" Height="464" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="869" Fill="#FF2D2D2D" Opacity="0.60" Visibility="Hidden" MouseDown="RctDarken_MouseDown"/>
     </Grid>
 </Window>
