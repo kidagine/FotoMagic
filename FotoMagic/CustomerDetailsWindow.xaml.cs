@@ -3,6 +3,7 @@ using FotoMagic.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -43,8 +44,9 @@ namespace FotoMagic
 
         public void LoadDate(Date date)
         {
-            lstDates.Items.Add(date);
-            datesList.Add(date);
+            Date dateToAdd = new Date(date.FirstName, date.LastName, date.OwedDate, float.Parse(date.OwedMoney).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
+            lstDates.Items.Add(dateToAdd);
+            datesList.Add(dateToAdd);
             SortDescription sortDescription = new SortDescription("OwedDate", ListSortDirection.Ascending);
             lstDates.Items.SortDescriptions.Add(sortDescription);
         }
@@ -67,7 +69,8 @@ namespace FotoMagic
                     string[] lines = line.Split(' ');
                     if (lines[0].Equals(firstName))
                     {
-                        Date date = new Date(lines[0], lines[1], lines[2], float.Parse(lines[3]));
+                        float money = float.Parse(lines[3]);
+                        Date date = new Date(lines[0], lines[1], lines[2], money.ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
                         lstDates.Items.Add(date);
                         datesList.Add(date);
                     }
@@ -196,11 +199,15 @@ namespace FotoMagic
 
         private float GetTotalOwedMoney()
         {
+            string lineDate = "";
             float totalOwedMoney = 0.0f;
-            for (int i = 0; i < lstDates.Items.Count; i++)
+            using (StreamReader sr = new StreamReader(FILEPATH))
             {
-                Date date = (Date)lstDates.Items[i];
-                totalOwedMoney += date.OwedMoney;                
+                while ((lineDate = sr.ReadLine()) != null)
+                {
+                    string[] linesDate = lineDate.Split(' ');
+                    totalOwedMoney += float.Parse(linesDate[3]);
+                }
             }
             return totalOwedMoney;
         }

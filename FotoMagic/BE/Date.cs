@@ -12,9 +12,9 @@ namespace FotoMagic.BE
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string OwedDate { get; set; }
-        public float OwedMoney { get; set; }
+        public string OwedMoney { get; set; }
 
-        public Date(string firstName, string lastName,string owedDate, float owedMoney)
+        public Date(string firstName, string lastName,string owedDate, string owedMoney)
         {
             FirstName = firstName;
             LastName = lastName;

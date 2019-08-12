@@ -1,6 +1,7 @@
 ﻿using FotoMagic.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -37,7 +38,8 @@ namespace FotoMagic
             {
                 string firstName = CustomerDetailsWindow.customerDetailsWindow.customerFirstName;
                 string lastName = CustomerDetailsWindow.customerDetailsWindow.customerLastName;
-                mainModel.CreateDate(firstName, lastName, dtpDate.Text, float.Parse(txtMoney.Text));
+                mainModel.CreateDate(firstName, lastName, dtpDate.Text, float.Parse(txtMoney.Text.Substring(0, (txtMoney.Text.Length - 1))));
+                CustomerDetailsWindow.customerDetailsWindow.HideDarkenRectangle();
                 this.Close();
             }
             else
@@ -91,6 +93,21 @@ namespace FotoMagic
             if (e.Key == Key.Space)
             {
                 e.Handled = true;
+            }
+
+            if (e.Key != Key.Back)
+            {
+                if (txtMoney.Text.Equals("") || txtMoney.Text.Equals(PlaceholderMoneyText))
+                {
+                    txtMoney.Text += txtMoney.Text + "€";
+                }
+            }
+            else
+            {
+                if (txtMoney.Text.Length <= 2)
+                {
+                    txtMoney.Text = "";
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using FotoMagic.BE;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -83,7 +84,7 @@ namespace FotoMagic.Model
 
         public void CreateDate(string firstName, string lastName, string owedDate, float owedMoney)
         {
-            Date date = new Date(firstName, lastName, owedDate, owedMoney);
+            Date date = new Date(firstName, lastName, owedDate, owedMoney.ToString());
             datesList.Add(date);
             CustomerDetailsWindow.customerDetailsWindow.LoadDate(date);
             WriteToTextFileDate();
