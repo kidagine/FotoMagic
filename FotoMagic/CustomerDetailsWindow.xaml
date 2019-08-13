@@ -30,9 +30,11 @@
             <ListView.View>
                 <GridView  ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                     <GridViewColumn Header="Date"
-                                    DisplayMemberBinding="{Binding OwedDate}" Width="210"/>
+                                    DisplayMemberBinding="{Binding OwedDate}" Width="140"/>
+                    <GridViewColumn Header="Product"
+                                    DisplayMemberBinding="{Binding OwedProduct}" Width="140"/>
                     <GridViewColumn Header="Money"
-                                    DisplayMemberBinding="{Binding OwedMoney}" Width="210"/>
+                                    DisplayMemberBinding="{Binding OwedMoney}" Width="140"/>
                 </GridView>
             </ListView.View>
             <ListView.ItemContainerStyle>

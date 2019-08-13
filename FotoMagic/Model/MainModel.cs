@@ -41,12 +41,12 @@ namespace FotoMagic.Model
             }
         }
 
-        public void RemoveDate(string dateToRemove)
+        public void RemoveDate(string dateToRemoveId)
         {
             datesList.RemoveAt(0);
             foreach (Date d in datesList)
             {
-                if (d.ToString().Equals(dateToRemove))
+                if (d.Id.ToString().Equals(dateToRemoveId))
                 {
                     datesList.Remove(d);
                     return;
@@ -82,12 +82,31 @@ namespace FotoMagic.Model
             WriteToTextFileCustomer();
         }
 
-        public void CreateDate(string firstName, string lastName, string owedDate, float owedMoney)
+        public void CreateDate(int id, string firstName, string lastName, string owedDate, string owedProduct, string owedMoney)
         {
-            Date date = new Date(firstName, lastName, owedDate, owedMoney.ToString());
+            Date date = new Date(id, firstName, lastName, owedDate, owedProduct, owedMoney);
             datesList.Add(date);
             CustomerDetailsWindow.customerDetailsWindow.LoadDate(date);
             WriteToTextFileDate();
+        }
+
+        public int GetLastId()
+        {
+            int id = 0;
+            using (StreamReader srDates = new StreamReader(FILEPATHDATES))
+            {
+                string dateLine = "";
+                while ((dateLine = srDates.ReadLine()) != null)
+                {
+                    string[] dateLines = dateLine.Split('|');
+                    int dateId = int.Parse(dateLines[0]);
+                    if (dateId >= id)
+                    {
+                        id = dateId;
+                    }
+                }
+            }
+            return id;
         }
 
         private void WriteToTextFileCustomer()
@@ -96,7 +115,7 @@ namespace FotoMagic.Model
             {
                 foreach (Customer c in customersList)
                 {
-                    tw.WriteLine(c.FirstName + " " + c.LastName + " " + c.OwedMoney);
+                    tw.WriteLine(c.FirstName + "|" + c.LastName + "|" + c.OwedMoney);
                 }
                 tw.Close();
             }
@@ -108,7 +127,7 @@ namespace FotoMagic.Model
             {
                 foreach (Date d in datesList)
                 {
-                    tw.WriteLine(d.FirstName + " " + d.LastName + " " + d.OwedDate + " " + d.OwedMoney);
+                    tw.WriteLine(d.Id + "|" + d.FirstName + "|" + d.LastName + "|" + d.OwedDate + "|" + d.OwedProduct + "|" + d.OwedMoney);
                 }
                 tw.Close();
             }

@@ -3,6 +3,7 @@ using FotoMagic.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace FotoMagic
 
         public void LoadDate(Date date)
         {
-            Date dateToAdd = new Date(date.FirstName, date.LastName, date.OwedDate, float.Parse(date.OwedMoney).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
+            Date dateToAdd = new Date(model.GetLastId(), date.FirstName, date.LastName, date.OwedDate, date.OwedProduct, float.Parse(date.OwedMoney).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
             lstDates.Items.Add(dateToAdd);
             datesList.Add(dateToAdd);
             SortDescription sortDescription = new SortDescription("OwedDate", ListSortDirection.Ascending);
@@ -66,11 +67,11 @@ namespace FotoMagic
                 string line = "";
                 while ((line = sr.ReadLine()) != null)
                 {
-                    string[] lines = line.Split(' ');
-                    if (lines[0].Equals(firstName))
+                    string[] lines = line.Split('|');
+                    if (lines[1].Equals(firstName))
                     {
-                        float money = float.Parse(lines[3]);
-                        Date date = new Date(lines[0], lines[1], lines[2], money.ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
+                        float money = float.Parse(lines[5]);
+                        Date date = new Date(int.Parse(lines[0]), lines[1], lines[2], lines[3], lines[4], money.ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
                         lstDates.Items.Add(date);
                         datesList.Add(date);
                     }
@@ -110,13 +111,33 @@ namespace FotoMagic
             if (lstDates.SelectedItems.Count > 0)
             {
                 Date date = (Date)lstDates.SelectedItems[0];
-                string lineToRemove = date.FirstName + " " + date.LastName + " " + date.OwedDate + " " + date.OwedMoney;
                 lstDates.Items.Remove(lstDates.SelectedItems[0]);
-                model.RemoveDate(lineToRemove);
-                RemoveDate(lineToRemove);
+                model.RemoveDate(date.Id.ToString());
+                RemoveDate(date.Id.ToString());
                 SortDescription sortDescription = new SortDescription("OwedDate", ListSortDirection.Ascending);
                 lstDates.Items.SortDescriptions.Add(sortDescription);
             }
+        }
+
+
+        private void RemoveDate(string lineToRemoveId)
+        {
+            using (StreamReader sr = new StreamReader(FILEPATH))
+            using (StreamWriter sw = new StreamWriter("tempFile.txt"))
+            {
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] lines = line.Split('|');
+                    Debug.WriteLine("id: " + lines[0] + "otherId: " + lineToRemoveId);
+                    if (lines[0] != lineToRemoveId)
+                    {
+                        sw.WriteLine(line);
+                    }
+                }
+            }
+            File.Delete(FILEPATH);
+            File.Move("tempFile.txt", FILEPATH);
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -129,7 +150,7 @@ namespace FotoMagic
                 {
                     if (d.OwedDate.ToLower().Contains(txtSearch.Text.ToLower()) || d.OwedMoney.ToString().ToLower().Contains(txtSearch.Text.ToLower()))
                     {
-                        Date date = new Date(d.FirstName, d.LastName, d.OwedDate, d.OwedMoney);
+                        Date date = new Date(d.Id, d.FirstName, d.LastName, d.OwedDate, d.OwedProduct, d.OwedMoney);
                         lstDates.Items.Add(date);
                     }
                 }
@@ -170,46 +191,11 @@ namespace FotoMagic
             }
         }
 
-        private void RemoveDate(string lineToRemove)
-        {
-            using (StreamReader sr = new StreamReader(FILEPATH))
-            using (StreamWriter sw = new StreamWriter("tempFile.txt"))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    if (line != lineToRemove)
-                    {
-                        sw.WriteLine(line);
-                    }
-                }
-            }
-            File.Delete(FILEPATH);
-            File.Move("tempFile.txt", FILEPATH);
-        }
-
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.mainWindow.HideDarkenRectangle();
             this.Close();
-            string[] customerName = lblCustomerName.Content.ToString().Split(' ');
-            Customer customer = new Customer(customerName[0], customerName[1], GetTotalOwedMoney().ToString());
-            MainWindow.mainWindow.LoadCustomer(customer);
-        }
-
-        private float GetTotalOwedMoney()
-        {
-            string lineDate = "";
-            float totalOwedMoney = 0.0f;
-            using (StreamReader sr = new StreamReader(FILEPATH))
-            {
-                while ((lineDate = sr.ReadLine()) != null)
-                {
-                    string[] linesDate = lineDate.Split(' ');
-                    totalOwedMoney += float.Parse(linesDate[3]);
-                }
-            }
-            return totalOwedMoney;
+            MainWindow.mainWindow.LoadCustomerData();
         }
     }
 }

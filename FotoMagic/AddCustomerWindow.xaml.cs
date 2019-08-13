@@ -76,10 +76,6 @@ namespace FotoMagic
             {
                 txtLastName.Focus();
             }
-            if (e.Key == Key.Space)
-            {
-                e.Handled = true;
-            }
         }
 
         private void TxtLastName_KeyDown(object sender, KeyEventArgs e)
@@ -155,7 +151,7 @@ namespace FotoMagic
                         lblError.Content = "The name has to contain letters";
                     }
                 }
-            }
+            }   
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)

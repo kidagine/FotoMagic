@@ -38,28 +38,38 @@ namespace FotoMagic
             InitializeComponent();
             model = MainModel.CreateInstance();
             mainWindow = this;
-            LoadCustomerList();
+            LoadAllData();
         }
 
-        private void LoadCustomerList()
+        public void LoadAllData()
         {
-            lstCustomers.Items.Clear();
+            LoadDateData();
+            LoadCustomerData();
+        }
+
+        private void LoadDateData()
+        {
             using (StreamReader srDates = new StreamReader(FILEPATHDATES))
             {
                 string dateLine = "";
                 while ((dateLine = srDates.ReadLine()) != null)
                 {
-                    string[] dateLines = dateLine.Split(' ');
-                    Date date = new Date(dateLines[0], dateLines[1], dateLines[2], dateLines[3]);
+                    string[] dateLines = dateLine.Split('|');
+                    Date date = new Date(int.Parse(dateLines[0]), dateLines[1], dateLines[2], dateLines[3], dateLines[4], dateLines[5]);
                     model.LoadDate(date);
                 }
             }
+        }
+
+        public void LoadCustomerData()
+        {
+            lstCustomers.Items.Clear();
             using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
             {
                 string lineCustomer = "";
                 while ((lineCustomer = sr.ReadLine()) != null)
                 {
-                    string[] linesCustomer = lineCustomer.Split(' ');
+                    string[] linesCustomer = lineCustomer.Split('|');
                     LoadCorrectCustomerData(linesCustomer);
                 }
             }
@@ -67,7 +77,7 @@ namespace FotoMagic
             lstCustomers.Items.SortDescriptions.Add(sortDescription);
         }
 
-        private void LoadCorrectCustomerData(string[] linesCustomer)
+        public void LoadCorrectCustomerData(string[] linesCustomer)
         {
             float totalOwedMoney = 0.0f;
             for (int i = 0; i < model.GetDatesList().Count; i++)
@@ -75,9 +85,9 @@ namespace FotoMagic
                 if (model.GetDatesList()[i].FirstName.Equals(linesCustomer[0]))
                 {
                     totalOwedMoney += float.Parse(model.GetDatesList()[i].OwedMoney);
+                    Debug.WriteLine(totalOwedMoney);
                 }
             }
-            Debug.WriteLine(totalOwedMoney);
             Customer customer = new Customer(linesCustomer[0], linesCustomer[1], totalOwedMoney.ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
             Customer customerToAdd = new Customer(linesCustomer[0], linesCustomer[1], totalOwedMoney.ToString());
             lstCustomers.Items.Add(customer);
@@ -91,8 +101,8 @@ namespace FotoMagic
                 for (int i = 0; i < lstCustomers.Items.Count; i++)
                 {
                     Customer customerToCheck = (Customer)lstCustomers.Items[i];
-                    string customerFullName = customerToCheck.FirstName + " " + customerToCheck.LastName;
-                    if (customerFullName.Equals(customer.FirstName + " " + customer.LastName))
+                    string customerFullName = customerToCheck.FirstName + "|" + customerToCheck.LastName;
+                    if (customerFullName.Equals(customer.FirstName + "|" + customer.LastName))
                     {
                         lstCustomers.Items.RemoveAt(i);
                     }
@@ -134,7 +144,7 @@ namespace FotoMagic
             if (lstCustomers.SelectedItems.Count > 0)
             {
                 Customer customer = (Customer)lstCustomers.SelectedItems[0];
-                string lineToRemove = customer.FirstName + " " + customer.LastName + " " + customer.OwedMoney;
+                string lineToRemove = customer.FirstName + "|" + customer.LastName + "|" + customer.OwedMoney;
                 lstCustomers.Items.Remove(lstCustomers.SelectedItems[0]);
                 model.RemoveCustomer(lineToRemove);
                 RemoveCustomer(lineToRemove);
