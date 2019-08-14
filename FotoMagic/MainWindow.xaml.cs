@@ -3,7 +3,6 @@ using FotoMagic.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -27,8 +26,8 @@ namespace FotoMagic
     {
 
         public static MainWindow mainWindow;
-        private const string FILEPATHCUSTOMERS = @"C:\Users\Kiddo\Desktop\Code\C#\Fotomagic\FotoMagic\FotoMagic\Resources\CustomersList.txt";
-        private const string FILEPATHDATES = @"C:\Users\Kiddo\Desktop\Code\C#\Fotomagic\FotoMagic\FotoMagic\Resources\DatesList.txt";
+        private readonly string FILEPATHCUSTOMERS = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\CustomersList.txt";
+        private readonly string FILEPATHDATES = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\DatesList.txt";
         private const string PlaceholderSearch = "Search customer";
         private MainModel model;
 
@@ -64,6 +63,7 @@ namespace FotoMagic
         public void LoadCustomerData()
         {
             lstCustomers.Items.Clear();
+            model.ClearCustomersList();
             using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
             {
                 string lineCustomer = "";
@@ -82,14 +82,13 @@ namespace FotoMagic
             float totalOwedMoney = 0.0f;
             for (int i = 0; i < model.GetDatesList().Count; i++)
             {
-                if (model.GetDatesList()[i].FirstName.Equals(linesCustomer[0]))
+                if (model.GetDatesList()[i].FirstName.Equals(linesCustomer[1]))
                 {
                     totalOwedMoney += float.Parse(model.GetDatesList()[i].OwedMoney);
-                    Debug.WriteLine(totalOwedMoney);
                 }
             }
-            Customer customer = new Customer(linesCustomer[0], linesCustomer[1], totalOwedMoney.ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
-            Customer customerToAdd = new Customer(linesCustomer[0], linesCustomer[1], totalOwedMoney.ToString());
+            Customer customer = new Customer(int.Parse(linesCustomer[0]), linesCustomer[1], linesCustomer[2], totalOwedMoney.ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
+            Customer customerToAdd = new Customer(int.Parse(linesCustomer[0]), linesCustomer[1], linesCustomer[2], totalOwedMoney.ToString());
             lstCustomers.Items.Add(customer);
             model.LoadCustomer(customerToAdd);
         }
@@ -98,19 +97,10 @@ namespace FotoMagic
         {
             using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
             {
-                for (int i = 0; i < lstCustomers.Items.Count; i++)
-                {
-                    Customer customerToCheck = (Customer)lstCustomers.Items[i];
-                    string customerFullName = customerToCheck.FirstName + "|" + customerToCheck.LastName;
-                    if (customerFullName.Equals(customer.FirstName + "|" + customer.LastName))
-                    {
-                        lstCustomers.Items.RemoveAt(i);
-                    }
-                }
-            Customer customerToAdd = new Customer(customer.FirstName, customer.LastName, float.Parse(customer.OwedMoney).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
-            lstCustomers.Items.Add(customerToAdd);
-            SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
-            lstCustomers.Items.SortDescriptions.Add(sortDescription);
+                Customer customerToAdd = new Customer(customer.Id, customer.FirstName, customer.LastName, float.Parse(customer.OwedMoney).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
+                lstCustomers.Items.Add(customerToAdd);
+                SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
+                lstCustomers.Items.SortDescriptions.Add(sortDescription);
             }
         }
 
@@ -144,24 +134,24 @@ namespace FotoMagic
             if (lstCustomers.SelectedItems.Count > 0)
             {
                 Customer customer = (Customer)lstCustomers.SelectedItems[0];
-                string lineToRemove = customer.FirstName + "|" + customer.LastName + "|" + customer.OwedMoney;
                 lstCustomers.Items.Remove(lstCustomers.SelectedItems[0]);
-                model.RemoveCustomer(lineToRemove);
-                RemoveCustomer(lineToRemove);
+                model.RemoveCustomer(customer.Id.ToString());
+                RemoveCustomer(customer.Id.ToString());
                 SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
                 lstCustomers.Items.SortDescriptions.Add(sortDescription);
             }
         }
 
-        private void RemoveCustomer(string lineToRemove)
+        private void RemoveCustomer(string lineToRemoveId)
         {
             using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
             using (StreamWriter sw = new StreamWriter("tempFile.txt"))
             {
-                string line;
+                string line = "";
                 while ((line = sr.ReadLine()) != null)
                 {
-                    if (line != lineToRemove)
+                    string[] lines = line.Split('|');
+                    if (lines[0] != lineToRemoveId)
                     {
                         sw.WriteLine(line);
                     }
@@ -181,7 +171,7 @@ namespace FotoMagic
                 {
                     if (c.FirstName.ToLower().Contains(txtSearch.Text.ToLower()) || c.LastName.ToLower().Contains(txtSearch.Text.ToLower()) || c.OwedMoney.ToString().ToLower().Contains(txtSearch.Text.ToLower()))
                     {
-                        Customer customer = new Customer(c.FirstName, c.LastName, c.OwedMoney);
+                        Customer customer = new Customer(c.Id, c.FirstName, c.LastName, float.Parse(c.OwedMoney).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
                         lstCustomers.Items.Add(customer);
                     }
                 }

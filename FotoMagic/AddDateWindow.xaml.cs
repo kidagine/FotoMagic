@@ -34,6 +34,7 @@ namespace FotoMagic
             InitializeComponent();
             mainModel = MainModel.CreateInstance();
             owedDate = DateTime.Today.ToString("dd/MM/yyyy");
+            txtProduct.Focus();
         }
 
         private void BtnAddDate_Click(object sender, RoutedEventArgs e)
@@ -43,20 +44,21 @@ namespace FotoMagic
 
         private void ConfirmDate()
         {
-            string moneyAmount = "";
-            if (!txtMoney.Text.Contains('.'))
-            {
-                moneyAmount = txtMoney.Text.Substring(0, (txtMoney.Text.Length - 1)) + ".00";
-            }
-            else
-            {
-                moneyAmount = txtMoney.Text;
-            }
+            string moneyAmount;
+
             if (!txtMoney.Text.Equals("") && (!txtMoney.Text.Equals(PlaceholderMoneyText)) && (!txtProduct.Text.Equals("") && (!txtProduct.Text.Equals(PlaceholderProductText))))
             {
+                if (!txtMoney.Text.Contains('.'))
+                {
+                    moneyAmount = txtMoney.Text.Substring(0, (txtMoney.Text.Length - 1)) + ".00";
+                }
+                else
+                {
+                    moneyAmount = txtMoney.Text;
+                }
                 string firstName = CustomerDetailsWindow.customerDetailsWindow.customerFirstName;
                 string lastName = CustomerDetailsWindow.customerDetailsWindow.customerLastName;
-                mainModel.CreateDate(mainModel.GetLastId()+1, firstName, lastName, owedDate, txtProduct.Text, moneyAmount);
+                mainModel.CreateDate(mainModel.GetLastDateId()+1, firstName, lastName, owedDate, txtProduct.Text, moneyAmount);
                 CustomerDetailsWindow.customerDetailsWindow.HideDarkenRectangle();
                 this.Close();
             }
@@ -113,14 +115,6 @@ namespace FotoMagic
         {
             if (e.Key == Key.Enter)
             {
-                txtProduct.Focus();
-            }
-        }
-
-        private void TxtProduct_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
                 if (txtMoney.Text.Equals("") || (txtMoney.Text.Equals(PlaceholderMoneyText)))
                 {
                     txtMoney.Focus();
@@ -129,7 +123,7 @@ namespace FotoMagic
                     rctMoney.Fill = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                     rctMoney.Stroke = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                 }
-                else if (txtProduct.Text.Equals("") || (txtProduct.Text.Equals(PlaceholderProductText)))
+                if (txtProduct.Text.Equals("") || (txtProduct.Text.Equals(PlaceholderProductText)))
                 {
                     txtProduct.Focus();
                     lblError.Visibility = Visibility.Visible;
@@ -139,8 +133,16 @@ namespace FotoMagic
                 }
                 else
                 {
-                    ConfirmDate(); 
+                    ConfirmDate();
                 }
+            }
+        }
+
+        private void TxtProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtMoney.Focus();
             }
         }
 
@@ -152,6 +154,8 @@ namespace FotoMagic
                 {
                     lblError.Visibility = Visibility.Visible;
                     lblError.Content = "";
+                    rctMoney.Fill = new SolidColorBrush(Color.FromRgb(29, 155, 243));
+                    rctMoney.Stroke = new SolidColorBrush(Color.FromRgb(29, 155, 243));
                 }
             }
         }
@@ -159,13 +163,13 @@ namespace FotoMagic
         private void TxtProduct_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBoxToProperCase(txtProduct);
-            Regex regex = new Regex("^[a-zA-Z ']*$");
+            Regex regex = new Regex("^[a-zA-Z 0-9 ']*$");
             if (!txtProduct.Text.Equals(PlaceholderProductText))
             {
                 if (!regex.IsMatch(txtProduct.Text))
                 {
                     lblError.Visibility = Visibility.Visible;
-                    lblError.Content = "The name cannot contain numbers or symbols.";
+                    lblError.Content = "The product name cannot contain symbols.";
                     rctProduct.Fill = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                     rctProduct.Stroke = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                 }

@@ -3,7 +3,6 @@ using FotoMagic.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -26,7 +25,7 @@ namespace FotoMagic
     public partial class CustomerDetailsWindow : Window
     {
 
-        private const string FILEPATH = @"C:\Users\Kiddo\Desktop\Code\C#\Fotomagic\FotoMagic\FotoMagic\Resources\DatesList.txt";
+        private readonly string FILEPATH = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\DatesList.txt";
         private const string PlaceholderSearch = "Search date";
         public static CustomerDetailsWindow customerDetailsWindow;
         public string customerFirstName;
@@ -45,7 +44,7 @@ namespace FotoMagic
 
         public void LoadDate(Date date)
         {
-            Date dateToAdd = new Date(model.GetLastId(), date.FirstName, date.LastName, date.OwedDate, date.OwedProduct, float.Parse(date.OwedMoney).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
+            Date dateToAdd = new Date(model.GetLastDateId(), date.FirstName, date.LastName, date.OwedDate, date.OwedProduct, float.Parse(date.OwedMoney).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
             lstDates.Items.Add(dateToAdd);
             datesList.Add(dateToAdd);
             SortDescription sortDescription = new SortDescription("OwedDate", ListSortDirection.Ascending);
@@ -57,10 +56,10 @@ namespace FotoMagic
             customerFirstName = customer.FirstName;
             customerLastName = customer.LastName;
             lblCustomerName.Content = customer.FirstName + " " + customer.LastName;
-            LoadDates(customerFirstName, customerLastName);
+            LoadDates(customerFirstName);
         }
 
-        private void LoadDates(string firstName, string lastName)
+        private void LoadDates(string customerName)
         {
             using (StreamReader sr = new StreamReader(FILEPATH))
             {
@@ -68,7 +67,7 @@ namespace FotoMagic
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] lines = line.Split('|');
-                    if (lines[1].Equals(firstName))
+                    if (lines[1].Equals(customerName))
                     {
                         float money = float.Parse(lines[5]);
                         Date date = new Date(int.Parse(lines[0]), lines[1], lines[2], lines[3], lines[4], money.ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
@@ -129,7 +128,6 @@ namespace FotoMagic
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] lines = line.Split('|');
-                    Debug.WriteLine("id: " + lines[0] + "otherId: " + lineToRemoveId);
                     if (lines[0] != lineToRemoveId)
                     {
                         sw.WriteLine(line);
@@ -148,7 +146,7 @@ namespace FotoMagic
                 lstDates.Items.Clear();
                 foreach (Date d in datesList)
                 {
-                    if (d.OwedDate.ToLower().Contains(txtSearch.Text.ToLower()) || d.OwedMoney.ToString().ToLower().Contains(txtSearch.Text.ToLower()))
+                    if (d.OwedDate.ToLower().Contains(txtSearch.Text.ToLower()) || d.OwedMoney.ToString().ToLower().Contains(txtSearch.Text.ToLower()) || d.OwedProduct.ToLower().ToLower().Contains(txtSearch.Text.ToLower()))
                     {
                         Date date = new Date(d.Id, d.FirstName, d.LastName, d.OwedDate, d.OwedProduct, d.OwedMoney);
                         lstDates.Items.Add(date);

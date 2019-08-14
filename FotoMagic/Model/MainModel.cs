@@ -1,6 +1,7 @@
 ﻿using FotoMagic.BE;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -13,8 +14,8 @@ namespace FotoMagic.Model
     {
 
         private static MainModel instance;
-        private const string FILEPATHCUSTOMERS = @"C:\Users\Kiddo\Desktop\Code\C#\Fotomagic\FotoMagic\FotoMagic\Resources\CustomersList.txt";
-        private const string FILEPATHDATES = @"C:\Users\Kiddo\Desktop\Code\C#\Fotomagic\FotoMagic\FotoMagic\Resources\DatesList.txt";
+        private readonly string FILEPATHCUSTOMERS = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\CustomersList.txt";
+        private readonly string FILEPATHDATES = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\DatesList.txt";
         private List<Customer> customersList = new List<Customer>();
         private List<Date> datesList = new List<Date>();
 
@@ -28,12 +29,11 @@ namespace FotoMagic.Model
             return instance;
         }
 
-        public void RemoveCustomer(string customerToRemove)
+        public void RemoveCustomer(string customerToRemoveId)
         {
-            customersList.RemoveAt(0);
             foreach (Customer c in customersList)
             {
-                if (c.ToString().Equals(customerToRemove))
+                if (c.Id.ToString().Equals(customerToRemoveId))
                 {
                     customersList.Remove(c);
                     return;
@@ -43,7 +43,6 @@ namespace FotoMagic.Model
 
         public void RemoveDate(string dateToRemoveId)
         {
-            datesList.RemoveAt(0);
             foreach (Date d in datesList)
             {
                 if (d.Id.ToString().Equals(dateToRemoveId))
@@ -56,12 +55,24 @@ namespace FotoMagic.Model
 
         public void LoadCustomer(Customer customer)
         {
+            foreach (Customer c in customersList)
+            {
+                if (c.Id.ToString().Equals(customer.Id))
+                {
+                    customersList.Remove(c);
+                }
+            }
             customersList.Add(customer);
         }
 
         public void LoadDate(Date date)
         {
             datesList.Add(date);
+        }
+
+        public void ClearCustomersList()
+        {
+            customersList.Clear();
         }
 
         public List<Customer> GetCustomersList()
@@ -74,9 +85,9 @@ namespace FotoMagic.Model
             return datesList;
         }
 
-        public void CreateCustomer(String firstName, string lastName, float owedMoney)
+        public void CreateCustomer(int id, String firstName, string lastName, float owedMoney)
         {
-            Customer customer = new Customer(firstName, lastName, owedMoney.ToString());
+            Customer customer = new Customer(id, firstName, lastName, owedMoney.ToString());
             customersList.Add(customer);
             MainWindow.mainWindow.LoadCustomer(customer);
             WriteToTextFileCustomer();
@@ -90,7 +101,26 @@ namespace FotoMagic.Model
             WriteToTextFileDate();
         }
 
-        public int GetLastId()
+        public int GetLastCustomerId()
+        {
+            int id = 0;
+            using (StreamReader srCustomers = new StreamReader(FILEPATHCUSTOMERS))
+            {
+                string customerLine = "";
+                while ((customerLine = srCustomers.ReadLine()) != null)
+                {
+                    string[] customerLines = customerLine.Split('|');
+                    int customerId = int.Parse(customerLines[0]);
+                    if (customerId >= id)
+                    {
+                        id = customerId;
+                    }
+                }
+            }
+            return id;
+        }
+
+        public int GetLastDateId()
         {
             int id = 0;
             using (StreamReader srDates = new StreamReader(FILEPATHDATES))
@@ -115,7 +145,7 @@ namespace FotoMagic.Model
             {
                 foreach (Customer c in customersList)
                 {
-                    tw.WriteLine(c.FirstName + "|" + c.LastName + "|" + c.OwedMoney);
+                    tw.WriteLine(c.Id + "|" + c.FirstName + "|" + c.LastName + "|" + c.OwedMoney);
                 }
                 tw.Close();
             }

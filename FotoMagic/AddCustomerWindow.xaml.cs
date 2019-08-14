@@ -90,7 +90,7 @@ namespace FotoMagic
                     rctFirstName.Fill = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                     rctFirstName.Stroke = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                 }
-                else if (txtLastName.Text.Equals("") || (txtLastName.Text.Equals(PlaceholderLastName)))
+                if (txtLastName.Text.Equals("") || (txtLastName.Text.Equals(PlaceholderLastName)))
                 {
                     txtLastName.Focus();
                     lblError.Visibility = Visibility.Visible;
@@ -139,7 +139,7 @@ namespace FotoMagic
                     string firstName = txtFirstName.Text;
                     string lastName = txtLastName.Text;
                     float owedMoney = 0.0f;
-                    model.CreateCustomer(firstName, lastName, owedMoney);
+                    model.CreateCustomer(model.GetLastCustomerId()+1, firstName, lastName, owedMoney);
                     MainWindow.mainWindow.HideDarkenRectangle();
                     this.Hide();
                 }
