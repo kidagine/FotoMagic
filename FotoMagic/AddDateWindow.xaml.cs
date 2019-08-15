@@ -25,15 +25,15 @@ namespace FotoMagic
 
         private const string PlaceholderMoneyText = "Enter the money amount";
         private const string PlaceholderProductText = "Enter the product's name";
+        private const string PlaceholderDateText = "dd/mm/yyyy";
         private const string ErrorEmptyTextBox = "You have to fill both fields";
         private MainModel mainModel;
-        private string owedDate;
+
 
         public AddDateWindow()
         {
             InitializeComponent();
             mainModel = MainModel.CreateInstance();
-            owedDate = DateTime.Today.ToString("dd/MM/yyyy");
             txtProduct.Focus();
         }
 
@@ -44,8 +44,8 @@ namespace FotoMagic
 
         private void ConfirmDate()
         {
+            string date;
             string moneyAmount;
-
             if (!txtMoney.Text.Equals("") && (!txtMoney.Text.Equals(PlaceholderMoneyText)) && (!txtProduct.Text.Equals("") && (!txtProduct.Text.Equals(PlaceholderProductText))))
             {
                 if (!txtMoney.Text.Contains('.'))
@@ -56,9 +56,17 @@ namespace FotoMagic
                 {
                     moneyAmount = txtMoney.Text;
                 }
+                if (txtDate.Text.Equals("") || txtDate.Text.Equals(PlaceholderDateText) || txtDate.Text.Length < 9)
+                {
+                    date = DateTime.Today.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    date = txtDate.Text;
+                }
                 string firstName = CustomerDetailsWindow.customerDetailsWindow.customerFirstName;
                 string lastName = CustomerDetailsWindow.customerDetailsWindow.customerLastName;
-                mainModel.CreateDate(mainModel.GetLastDateId()+1, firstName, lastName, owedDate, txtProduct.Text, moneyAmount);
+                mainModel.CreateDate(mainModel.GetLastDateId()+1, firstName, lastName, date, txtProduct.Text, moneyAmount);
                 CustomerDetailsWindow.customerDetailsWindow.HideDarkenRectangle();
                 this.Close();
             }
@@ -108,6 +116,24 @@ namespace FotoMagic
             {
                 txtProduct.Text = PlaceholderProductText;
                 txtProduct.Foreground = new SolidColorBrush(Color.FromRgb(126, 126, 126));
+            }
+        }
+
+        private void TxtDate_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtDate.Text.Equals(PlaceholderDateText))
+            {
+                txtDate.Text = "";
+                txtDate.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            }
+        }
+
+        private void TxtDate_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtDate.Text.Equals(""))
+            {
+                txtDate.Text = PlaceholderDateText;
+                txtDate.Foreground = new SolidColorBrush(Color.FromRgb(126, 126, 126));
             }
         }
 
@@ -202,6 +228,15 @@ namespace FotoMagic
             if (regex.IsMatch(e.Text))
             {
                 e.Handled = true;
+            }   
+        }
+
+        private void TxtDate_PreviewInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9 .]");
+            if (regex.IsMatch(e.Text))
+            {
+                e.Handled = true;
             }
         }
 
@@ -249,6 +284,57 @@ namespace FotoMagic
                 if (txtMoney.Text.Length <= 2)
                 {
                     txtMoney.Text = "";
+                }
+            }
+        }
+
+        private void TxtDate_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+            else if (txtDate.Text.Length > 9 && e.Key != Key.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void BtnDate_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtDate.Visibility == Visibility.Hidden)
+            {
+                txtDate.Visibility = Visibility.Visible;
+                btnDate.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            }
+            else
+            {
+                txtDate.Visibility = Visibility.Hidden;
+                btnDate.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+            }
+        }
+
+        private void TxtDate_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Back)
+            {
+                if (txtDate.Text.Length == 2 || txtDate.Text.Length == 5)
+                {
+                    txtDate.Text += "/";
+                    txtDate.SelectionStart = txtDate.Text.Length;
+                }
+            }
+
+            if (txtDate.Text.Length < 9)
+            {
+                if (txtDate.Text.Length == 2 && e.Key == Key.Back || txtDate.Text.Length == 5 && e.Key == Key.Back)
+                {
+                    txtDate.Text = txtDate.Text.Remove(txtDate.Text.Length - 1);
+                    txtDate.SelectionStart = txtDate.Text.Length;
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
         }

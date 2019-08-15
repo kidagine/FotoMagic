@@ -74,6 +74,12 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
+            <Button x:Name="btnDate" Height="35" Width="35" Click="BtnDate_Click" Style="{DynamicResource ButtonNinBorder}" Margin="440,313,184,75" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="resources/Images/DateImage.png" Width="25" Height="30"/>
+                </StackPanel>
+            </Button>
+            <TextBox x:Name="txtDate" Text="dd/mm/yyyy" VerticalContentAlignment="Center" Margin="502,313,25,75" Background="White" Foreground="#FF7E7E7E" TextAlignment="Center" SelectionBrush="#FF1D9BF3" BorderBrush="#FF2D2D2D" FontFamily="Montserrat" FontSize="14" GotFocus="TxtDate_GotFocus" LostFocus="TxtDate_LostFocus" PreviewTextInput="TxtDate_PreviewInput" PreviewKeyDown="TxtDate_PreviewKeyDown"  Visibility="Hidden" Style="{DynamicResource TextBoxNin}" KeyUp="TxtDate_KeyUp"/>
         </Grid>
     </Border>
 </Window>

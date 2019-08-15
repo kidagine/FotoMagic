@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FotoMagic"
         mc:Ignorable="d"
-        Title="FotoMagic" Height="495.368" Width="877.248" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="CanMinimize">
+        Title="FotoMagic" Height="495.368" Width="877.248" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="CanMinimize" Icon="Resources/Images/FotoMagicIcon.ico">
     <Window.Resources>
 
         <Style x:Key="GridViewColumnHeaderStyle1" TargetType="{x:Type GridViewColumnHeader}">
