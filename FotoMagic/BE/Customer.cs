@@ -4,22 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FotoMagic.BE
+namespace FotoMagic
 {
-    public class Customer
+    class Customer
     {
 
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string OwedMoney { get; set; }
-
-        public Customer(int id, string firstName, string lastName, string owedMoney)
+        public Customer(string firstName, string lastName, float owedMoney)
         {
-            Id = id;
             FirstName = firstName;
             LastName = lastName;
             OwedMoney = owedMoney;
         }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public float OwedMoney { get; set; }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} {OwedMoney}";
+        }
+
     }
 }

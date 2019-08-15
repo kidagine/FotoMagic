@@ -1,3 +1,0 @@
-0|John|Wick|258
-1|Steven|Spielberg|148
-2|New|Newman|0
