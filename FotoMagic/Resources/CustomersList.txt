@@ -1,2 +1,0 @@
-0|John|Wick|212
-1|Steven|Spielberg|0
