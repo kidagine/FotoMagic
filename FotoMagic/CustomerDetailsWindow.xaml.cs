@@ -44,6 +44,13 @@ namespace FotoMagic
             StartAnimation();
         }
 
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Current.Shutdown();
+        }
+
         private void StartAnimation()
         {
             grdDetails.Opacity = 0;

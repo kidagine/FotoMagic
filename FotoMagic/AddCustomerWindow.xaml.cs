@@ -171,7 +171,7 @@ namespace FotoMagic
                 {
                     canAddCustomer = false;
                     lblError.Visibility = Visibility.Visible;
-                    lblError.Content = "The name cannot contain numbers or symbols.";
+                    lblError.Content = "Το όνομα δεν μπορει να έχει νούμερα ή σύμβολα.";
                     rctFirstName.Fill = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                     rctFirstName.Stroke = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                 }
@@ -181,7 +181,7 @@ namespace FotoMagic
                     rctFirstName.Stroke = new SolidColorBrush(Color.FromRgb(29, 155, 243));
                     if (lblError.Content.Equals(ErrorEmptyTextBox))
                     {
-                        lblError.Content = "The name cannot contain numbers or symbols.";
+                        lblError.Content = "Το όνομα δεν μπορει να έχει νούμερα ή σύμβολα.";
                     }
                     if (regex.IsMatch(txtLastName.Text))
                     {
@@ -203,7 +203,7 @@ namespace FotoMagic
                 {
                     canAddCustomer = false;
                     lblError.Visibility = Visibility.Visible;
-                    lblError.Content = "The name cannot contain numbers or symbols.";
+                    lblError.Content = "Το όνομα δεν μπορει να έχει νούμερα ή σύμβολα.";
                     rctLastName.Fill = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                     rctLastName.Stroke = new SolidColorBrush(Color.FromRgb(255, 81, 48));
                 }
@@ -213,7 +213,7 @@ namespace FotoMagic
                     rctLastName.Stroke = new SolidColorBrush(Color.FromRgb(29, 155, 243));
                     if (lblError.Content.Equals(ErrorEmptyTextBox))
                     {
-                        lblError.Content = "The name cannot contain numbers or symbols.";
+                        lblError.Content = "Το όνομα δεν μπορει να έχει νούμερα ή σύμβολα.";
                     }
                     if (regex.IsMatch(txtFirstName.Text))
                     {

@@ -14,6 +14,6 @@
         <Grid.Background>
             <ImageBrush x:Name="imgSplashScreen" ImageSource="Resources/Images/FotoMagicSplashScreen.png" Opacity="1"/>
         </Grid.Background>
-        <Label Content="Ver.1.0.1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="355,572,0,0" Foreground="White" FontFamily="Calamity" FontSize="14" Height="27" Width="75"/>
+        <Label Content="Ver.1.0.3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="355,572,0,0" Foreground="White" FontFamily="Calamity" FontSize="14" Height="27" Width="75"/>
     </Grid>
 </Window>

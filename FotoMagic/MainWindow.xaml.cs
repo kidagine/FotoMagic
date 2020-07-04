@@ -30,8 +30,15 @@ namespace FotoMagic
         private readonly string FILEPATHCUSTOMERS = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\CustomersList.txt";
         private readonly string FILEPATHDATES = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\DatesList.txt";
         private const string PlaceholderSearch = "Ψάξε τον πελάτη";
-        private MainModel model;
+        private readonly MainModel model;
 
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Current.Shutdown();
+        }
 
         public MainWindow()
         {
@@ -254,5 +261,4 @@ namespace FotoMagic
             }
         }
     }
-
 }

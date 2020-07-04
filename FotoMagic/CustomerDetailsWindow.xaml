@@ -29,8 +29,12 @@
             <DropShadowEffect x:Name="dseDetails" BlurRadius="4" Color="Black" Opacity="0.7" ShadowDepth="0.4" />
         </Border.Effect>
         <Grid x:Name="grdDetails" Background="#FFEBEBEB">
-            <Label x:Name="lblCustomerName" Content="&lt;Customer Name&gt;" Margin="65,17,0,0" VerticalAlignment="Top" Foreground="#FF252526" FontSize="24" FontFamily="Montserrat Medium" RenderTransformOrigin="0.51,1.483"/>
-            <ListView x:Name="lstDates" Height="370" Margin="364,65,45,37" VerticalAlignment="Top" Background="Transparent" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="18" Style="{DynamicResource ListViewNin}" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45*"/>
+                <ColumnDefinition Width="826*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblCustomerName" Content="&lt;Customer Name&gt;" Margin="20.223,17,0,0" VerticalAlignment="Top" Foreground="#FF252526" FontSize="24" FontFamily="Montserrat Medium" RenderTransformOrigin="0.51,1.483" Grid.Column="1"/>
+            <ListView x:Name="lstDates" Height="370" Margin="319.223,65,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="18" Style="{DynamicResource ListViewNin}" HorizontalAlignment="Left" Grid.Column="1">
                 <ListView.View>
                     <GridView  ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                         <GridViewColumn Header="Ημερομηνία"
@@ -100,15 +104,15 @@
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
-            <Button x:Name="btnAdd" Content="Πρόσθεσε +"  HorizontalAlignment="Left" Padding="0,0,90,0" Margin="65,159,0,0" VerticalAlignment="Top" Width="235" Click="BtnAdd_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52" Style="{DynamicResource ButtonNin}"/>
-            <Button x:Name="btnRemove" Content="Διέγραψε -" HorizontalAlignment="Left" Padding="0,0,96,0" Margin="65,220,0,0" VerticalAlignment="Top" Width="235" Click="BtnRemove_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52"  Style="{DynamicResource ButtonNin}"/>
-            <Button Content="Πίσω" HorizontalAlignment="Left" Margin="65,289,0,0" Padding="0,0,150,0" VerticalAlignment="Top" Width="235"  Click="BtnExit_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52" Style="{DynamicResource ButtonNin}"/>
-            <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,55,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
-            <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,436,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
-            <Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1.2" Margin="65,145,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235"/>
-            <TextBox x:Name="txtSearch" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="57" Margin="57,71,0,0" TextWrapping="Wrap" Text="Ψάξε την ημερομηνία" VerticalAlignment="Top" Width="250" TextAlignment="Center" Foreground="#FF7E7E7E" TextChanged="TextBox_TextChanged" GotFocus="TxtSearch_GotFocus" LostFocus="TxtSearch_LostFocus" Style="{DynamicResource TextBoxNin}" BorderBrush="#FF2D2D2D"/>
-            <Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1.2" Margin="65,280,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235"/>
-            <Rectangle x:Name="rctDarken" HorizontalAlignment="Left" Height="464" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="869" Fill="#FF2D2D2D" Opacity="0.60" Visibility="Hidden" MouseDown="RctDarken_MouseDown"/>
+            <Button x:Name="btnAdd" Content="Πρόσθεσε +"  HorizontalAlignment="Left" Padding="0,0,90,0" Margin="20.223,159,0,0" VerticalAlignment="Top" Width="235" Click="BtnAdd_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52" Style="{DynamicResource ButtonNin}" Grid.Column="1"/>
+            <Button x:Name="btnRemove" Content="Διέγραψε -" HorizontalAlignment="Left" Padding="0,0,96,0" Margin="20.223,220,0,0" VerticalAlignment="Top" Width="235" Click="BtnRemove_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52"  Style="{DynamicResource ButtonNin}" Grid.Column="1"/>
+            <Button Content="Πίσω" HorizontalAlignment="Left" Margin="20.223,289,0,0" Padding="0,0,150,0" VerticalAlignment="Top" Width="235"  Click="BtnExit_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52" Style="{DynamicResource ButtonNin}" Grid.Column="1"/>
+            <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,55,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785" Grid.ColumnSpan="2"/>
+            <Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,436,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785" Grid.ColumnSpan="2"/>
+            <Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1" Margin="20.223,145,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235" Grid.Column="1"/>
+            <TextBox x:Name="txtSearch" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="57" Margin="12.223,71,0,0" TextWrapping="Wrap" Text="Ψάξε την ημερομηνία" VerticalAlignment="Top" Width="250" TextAlignment="Center" Foreground="#FF7E7E7E" TextChanged="TextBox_TextChanged" GotFocus="TxtSearch_GotFocus" LostFocus="TxtSearch_LostFocus" Style="{DynamicResource TextBoxNin}" BorderBrush="#FF2D2D2D" Grid.Column="1"/>
+            <Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1" Margin="20.223,280,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235" Grid.Column="1"/>
+            <Rectangle x:Name="rctDarken" HorizontalAlignment="Left" Height="464" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="869" Fill="#FF2D2D2D" Opacity="0.60" Visibility="Hidden" MouseDown="RctDarken_MouseDown" Grid.ColumnSpan="2"/>
         </Grid>
     </Border>
 </Window>
