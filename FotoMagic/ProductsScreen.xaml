@@ -1,0 +1,111 @@
+﻿<Window x:Class="Fotomagic.ProductsScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fotomagic"
+        mc:Ignorable="d"
+        Title="Fotomagic" Height="495.368" Width="877.248" WindowStartupLocation="CenterScreen" Background="#FFEBEBEB" ResizeMode="NoResize">
+	<Window.Resources>
+
+		<Style x:Key="GridViewColumnHeaderStyle1" TargetType="{x:Type GridViewColumnHeader}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+						<Border BorderThickness="0,0,0,1" BorderBrush="Black" Background="Transparent">
+							<TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,5,5,0" Width="{TemplateBinding Width}" TextAlignment="Left" />
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="OverridesDefaultStyle" Value="True" />
+			<Setter Property="Foreground" Value="Black" />
+			<Setter Property="FontFamily" Value="Montserrat" />
+			<Setter Property="FontSize" Value="20" />
+		</Style>
+	</Window.Resources>
+	<Border>
+		<Border.Effect>
+			<DropShadowEffect x:Name="dseMain" BlurRadius="4" Color="Black" Opacity="0.7" ShadowDepth="0.4" />
+		</Border.Effect>
+		<Grid x:Name="grdMain" Background="#FFEBEBEB" Margin="0,0,0,-8">
+			<Rectangle Fill="#FFF0F0F0" HorizontalAlignment="Left" Height="381" Margin="0,56,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="324"/>
+			<Button Content="Πρόσθεσε +" HorizontalAlignment="Left" Padding="0,0,90,0" Margin="65,159,0,0" VerticalAlignment="Top" Width="235" Click="BtnAdd_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52" Style="{DynamicResource ButtonNin}"/>
+			<Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,55,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
+			<Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="39,436,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="785"/>
+			<Label Content="Προϊοντα" HorizontalAlignment="Left" Margin="65,17,0,0" VerticalAlignment="Top" Foreground="#FF252526" FontSize="24" FontFamily="Montserrat Medium" RenderTransformOrigin="0.51,1.483"/>
+			<TextBox x:Name="txtSearch" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="57" Margin="57,71,0,0" TextWrapping="Wrap" Text="Ψάξε Προϊον" VerticalAlignment="Top" Width="250" TextAlignment="Center" Foreground="#FF7E7E7E" TextChanged="TextBox_TextChanged" GotFocus="TxtSearch_GotFocus" LostFocus="TxtSearch_LostFocus" Style="{DynamicResource TextBoxNin}" BorderBrush="#FF2D2D2D"/>
+			<ListView x:Name="lstCustomers" Height="370" Margin="364,65,45,37" VerticalAlignment="Top" Background="Transparent" FontFamily="Montserrat" FontSize="18" MouseDoubleClick="LstCustomers_MouseDoubleClick" Foreground="#FF2D2D2D" HorizontalAlignment="Left" Style="{DynamicResource ListViewNin}">
+				<ListView.View>
+					<GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
+						<GridViewColumn Header="Όνομα"
+                                        DisplayMemberBinding="{Binding Name}" Width="230"/>
+						<GridViewColumn Header="Κόστος"
+                                        DisplayMemberBinding="{Binding Price}" Width="230"/>
+					</GridView>
+				</ListView.View>
+				<ListView.ItemContainerStyle>
+					<Style TargetType="ListViewItem">
+						<Setter Property="Margin" Value="0"/>
+						<Setter Property="Padding" Value="0"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="ListViewItem">
+									<Border SnapsToDevicePixels="True"
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            Background="{TemplateBinding Background}">
+										<Border Name="Border" BorderBrush="#FFCDCDCD" BorderThickness="0, 0, 0, 1">
+											<Grid>
+												<Grid.RowDefinitions>
+													<RowDefinition MaxHeight="11" />
+													<RowDefinition />
+												</Grid.RowDefinitions>
+												<Rectangle Name="UpperHighlight" Visibility="Collapsed" Fill="#75FFFFFF" />
+												<GridViewRowPresenter Grid.RowSpan="2" 
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+											</Grid>
+										</Border>
+									</Border>
+									<ControlTemplate.Triggers>
+										<Trigger Property="IsMouseOver" Value="True">
+											<Setter Property="Background" Value="White"/>
+											<Setter Property="BorderThickness" Value="2"/>
+											<Trigger.EnterActions>
+												<BeginStoryboard HandoffBehavior="Compose">
+													<Storyboard>
+														<ColorAnimation Duration="0:0:0.5" From="#FF1769E0" To="#FF1D9BF3" AutoReverse="True" RepeatBehavior="Forever" Storyboard.TargetProperty="BorderBrush.Color" >
+															<ColorAnimation.EasingFunction>
+																<BackEase EasingMode="EaseInOut" Amplitude="2"/>
+															</ColorAnimation.EasingFunction>
+														</ColorAnimation>
+													</Storyboard>
+												</BeginStoryboard>
+											</Trigger.EnterActions>
+											<Trigger.ExitActions>
+												<BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+													<Storyboard>
+														<ColorAnimation Duration="0:0:0" To="Transparent" Storyboard.TargetProperty="BorderBrush.Color" />
+													</Storyboard>
+												</BeginStoryboard>
+											</Trigger.ExitActions>
+										</Trigger>
+										<Trigger Property="IsSelected" Value="True">
+											<Setter Property="Background" Value="#FFFBFBFB"/>
+											<Setter Property="BorderBrush" Value="#FF1D9BF3"/>
+											<Setter Property="BorderThickness" Value="2"/>
+										</Trigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</ListView.ItemContainerStyle>
+			</ListView>
+			<Button x:Name="btnRemove" Content="Διέγραψε -" HorizontalAlignment="Left" Padding="0,0,96,0" Margin="65,220,0,0" VerticalAlignment="Top" Width="235" Click="BtnRemove_Click" Background="#00000000" BorderBrush="#00000000" Foreground="#FF2D2D2D" FontFamily="Montserrat" FontSize="20" Height="52" Style="{DynamicResource ButtonNin}"/>
+			<Rectangle Fill="#FFF90000" HorizontalAlignment="Left" Height="1.2" Margin="65,145,0,0" Stroke="#FFCDCDCD" VerticalAlignment="Top" Width="235"/>
+			<Rectangle x:Name="rctDarken" HorizontalAlignment="Left" Height="464" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="869" Fill="#FF2D2D2D" Opacity="0.60" Visibility="Hidden" MouseDown="RctDarken_MouseDown"/>
+		</Grid>
+	</Border>
+</Window>
