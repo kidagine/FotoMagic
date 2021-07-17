@@ -1,51 +1,18 @@
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\bin\Debug\FotoMagic.exe
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.csprojAssemblyReference.cache
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\AddCustomerWindow.g.cs
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\AddDateWindow.g.cs
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\CustomerDetailsWindow.g.cs
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\MainWindow.g.cs
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\SplashScreenWindow.g.cs
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\App.g.cs
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic_MarkupCompile.cache
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic_MarkupCompile.lref
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\App.baml
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\AddCustomerWindow.baml
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\AddDateWindow.baml
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\CustomerDetailsWindow.baml
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\MainWindow.baml
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\SplashScreenWindow.baml
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.g.resources
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.Properties.Resources.resources
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.csproj.GenerateResource.cache
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.csproj.CoreCompileInputs.cache
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.exe
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.pdb
-C:\Users\Kiddo\Desktop\FotoMagic.exe.config
-C:\Users\Kiddo\Desktop\FotoMagic.exe
-C:\Users\Kiddo\Desktop\FotoMagic.pdb
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\bin\Debug\FotoMagic.exe.config
-C:\Users\Kiddo\Desktop\FotoMagic-master\FotoMagic\bin\Debug\FotoMagic.pdb
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\bin\Debug\FotoMagic.exe.config
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\bin\Debug\FotoMagic.exe
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\bin\Debug\FotoMagic.pdb
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.csprojAssemblyReference.cache
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\AddCustomerWindow.g.cs
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\AddDateWindow.g.cs
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\CustomerDetailsWindow.g.cs
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\MainWindow.g.cs
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\SplashScreenWindow.g.cs
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\App.g.cs
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic_MarkupCompile.cache
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic_MarkupCompile.lref
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\App.baml
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\AddCustomerWindow.baml
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\AddDateWindow.baml
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\CustomerDetailsWindow.baml
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\MainWindow.baml
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\SplashScreenWindow.baml
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.g.resources
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.Properties.Resources.resources
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.csproj.GenerateResource.cache
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.csproj.CoreCompileInputs.cache
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.exe
-C:\Users\Kid Agine\Desktop\FotoMagic-master\FotoMagic\obj\Debug\FotoMagic.pdb
+C:\Users\David\source\repos\Fotomagic\Fotomagic\bin\Debug\Fotomagic.exe.config
+C:\Users\David\source\repos\Fotomagic\Fotomagic\bin\Debug\Fotomagic.exe
+C:\Users\David\source\repos\Fotomagic\Fotomagic\bin\Debug\Fotomagic.pdb
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic.csproj.AssemblyReference.cache
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\App.g.cs
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic_MarkupCompile.cache
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic_MarkupCompile.lref
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic.g.resources
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic.Properties.Resources.resources
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic.csproj.GenerateResource.cache
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic.csproj.CoreCompileInputs.cache
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic.exe
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic.pdb
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\SplashScreen.g.cs
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\SplashScreen.baml
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\Fotomagic_Content.g.cs
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\ProductsScreen.g.cs
+C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\ProductsScreen.baml
