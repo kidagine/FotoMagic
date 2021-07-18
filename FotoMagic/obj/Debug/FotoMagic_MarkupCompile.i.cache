@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\David\source\repos\Fotomagic\Fotomagic\obj\Debug\
+C:\Users\David\Desktop\Fotomagic\Fotomagic\obj\Debug\
 Fotomagic
 none
 false
 DEBUG;TRACE
-C:\Users\David\source\repos\Fotomagic\Fotomagic\App.xaml
-21904294063
+C:\Users\David\Desktop\Fotomagic\Fotomagic\App.xaml
+61125009374
 1889017712
-9966928868
+141510347684
 121654848548
-ProductsScreen.xaml;SplashScreen.xaml;
+CustomerAddScreen.xaml;CustomerProductsScreen.xaml;CustomersScreen.xaml;ProductAddScreen.xaml;ProductsScreen.xaml;SplashScreen.xaml;
 
 False
 

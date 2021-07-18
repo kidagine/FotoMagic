@@ -54,7 +54,8 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>FotoMagicIcon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -77,6 +78,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomerAddScreen.xaml.cs">
+      <DependentUpon>CustomerAddScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerProductsScreen.xaml.cs">
+      <DependentUpon>CustomerProductsScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomersScreen.xaml.cs">
+      <DependentUpon>CustomersScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MainModel.cs" />
+    <Compile Include="ProductAddScreen.xaml.cs">
+      <DependentUpon>ProductAddScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductsScreen.xaml.cs">
       <DependentUpon>ProductsScreen.xaml</DependentUpon>
     </Compile>
@@ -89,6 +103,22 @@
     </Compile>
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Page Include="CustomerAddScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerProductsScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomersScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductAddScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProductsScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,9 +167,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FotoMagicIcon.ico" />
+    <Folder Include="Views\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\Images\FotoMagicIcon.ico" />
   </ItemGroup>
