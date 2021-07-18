@@ -29,20 +29,20 @@ namespace Fotomagic
             StartAnimation();
 
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
         }
         public void StartAnimation()
         {
             imgSplashScreen.Opacity = 0;
-            DoubleAnimation animation = new DoubleAnimation(1, TimeSpan.FromSeconds(1f));
+            DoubleAnimation animation = new DoubleAnimation(1, TimeSpan.FromSeconds(0.5f));
             imgSplashScreen.BeginAnimation(ImageBrush.OpacityProperty, animation);
         }
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            ProductsScreen productsScreen = new ProductsScreen();
+            CustomersScreen customersScreen = new CustomersScreen();
             this.Hide();
-            productsScreen.Show();
+            customersScreen.Show();
 
             dispatcherTimer.Stop();
 		}

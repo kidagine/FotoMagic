@@ -8,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,14 +22,23 @@ using System.Windows.Shapes;
 namespace Fotomagic
 {
 	/// <summary>
-	/// Interaction logic for ProductsScreen.xaml
+	/// Interaction logic for CustomersScreen.xaml
 	/// </summary>
-	public partial class ProductsScreen : Window
+	public partial class CustomersScreen : Window
 	{
+		public CustomersScreen()
+		{
+            InitializeComponent();
+			InitializeComponent();
+			model = MainModel.CreateInstance();
+			customersScreen = this;
+			LoadAllData();
+		}
+
 		private readonly MainModel model;
-		public static ProductsScreen productsScreen;
-		private readonly string FILEPATHPRODUCTS = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\Products.txt";
-		private string placeholderSearch = "Ψάξε προϊόν";
+		public static CustomersScreen customersScreen;
+		private readonly string FILEPATHCUSTOMERS = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\Customers.txt";
+		private const string placeholderSearch = "Ψάξε πελάτη";
 		private bool _isOnProductsPage = true;
 
 		protected override void OnClosed(EventArgs e)
@@ -38,19 +48,11 @@ namespace Fotomagic
 			Application.Current.Shutdown();
 		}
 
-		public ProductsScreen()
-		{
-			InitializeComponent();
-			model = MainModel.CreateInstance();
-			productsScreen = this;
-			LoadAllData();
-		}
-
 		public void LoadAllData()
 		{
 			lstCustomers.Items.Clear();
 			//model.ClearCustomersList();
-			using (StreamReader sr = new StreamReader(FILEPATHPRODUCTS))
+			using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
 			{
 				string lineCustomer = "";
 				while ((lineCustomer = sr.ReadLine()) != null)
@@ -59,25 +61,25 @@ namespace Fotomagic
 					LoadCorrectProductData(linesCustomer);
 				}
 			}
-			SortDescription sortDescription = new SortDescription("Name", ListSortDirection.Ascending);
+			SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
 			lstCustomers.Items.SortDescriptions.Add(sortDescription);
 		}
 
 		public void LoadCorrectProductData(string[] linesCustomer)
 		{
-			Product product = new Product(int.Parse(linesCustomer[0]), linesCustomer[1], float.Parse(linesCustomer[2]).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
-			Product productToAdd = new Product(int.Parse(linesCustomer[0]), linesCustomer[1], linesCustomer[2]);
-			lstCustomers.Items.Add(product);
-			model.LoadProduct(productToAdd);
+			Customer customer = new Customer(int.Parse(linesCustomer[0]), linesCustomer[1], linesCustomer[2]);
+			Customer customerToAdd = new Customer(int.Parse(linesCustomer[0]), linesCustomer[1], linesCustomer[2]);
+			lstCustomers.Items.Add(customer);
+			model.LoadCustomer(customerToAdd);
 		}
 
-		public void LoadProduct(Product product)
+		public void LoadCustomer(Customer customer)
 		{
-			using (StreamReader sr = new StreamReader(FILEPATHPRODUCTS))
+			using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
 			{
-				Product productToAdd = new Product(product.Id, product.Name, float.Parse(product.Price).ToString("C", CultureInfo.CreateSpecificCulture("fr-FR")));
-				lstCustomers.Items.Add(productToAdd);
-				SortDescription sortDescription = new SortDescription("Name", ListSortDirection.Ascending);
+				Customer customerToAdd = new Customer(customer.Id, customer.FirstName, customer.LastName);
+				lstCustomers.Items.Add(customerToAdd);
+				SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
 				lstCustomers.Items.SortDescriptions.Add(sortDescription);
 			}
 		}
@@ -98,9 +100,9 @@ namespace Fotomagic
 			rctDarken.Opacity = 0;
 			DoubleAnimation animation = new DoubleAnimation(0.7, TimeSpan.FromSeconds(0.2f));
 			rctDarken.BeginAnimation(Rectangle.OpacityProperty, animation);
-			ProductAddScreen productAddScreen = new ProductAddScreen();
-			productAddScreen.Owner = this;
-			productAddScreen.Show();
+			CustomerAddScreen customerAddScreen = new CustomerAddScreen();
+			customerAddScreen.Owner = this;
+			customerAddScreen.Show();
 		}
 
 		private void RctDarken_MouseDown(object sender, MouseButtonEventArgs e)
@@ -112,18 +114,18 @@ namespace Fotomagic
 		{
 			if (lstCustomers.SelectedItems.Count > 0)
 			{
-				Product product = (Product)lstCustomers.SelectedItems[0];
+				Customer customer = (Customer)lstCustomers.SelectedItems[0];
 				lstCustomers.Items.Remove(lstCustomers.SelectedItems[0]);
-				model.RemoveProduct(product.Id.ToString());
-				RemoveProduct(product.Id.ToString());
+				model.RemoveCustomer(customer.Id.ToString());
+				RemoveCustomer(customer.Id.ToString());
 				SortDescription sortDescription = new SortDescription("FirstName", ListSortDirection.Ascending);
 				lstCustomers.Items.SortDescriptions.Add(sortDescription);
 			}
 		}
 
-		private void RemoveProduct(string lineToRemoveId)
+		private void RemoveCustomer(string lineToRemoveId)
 		{
-			using (StreamReader sr = new StreamReader(FILEPATHPRODUCTS))
+			using (StreamReader sr = new StreamReader(FILEPATHCUSTOMERS))
 			using (StreamWriter sw = new StreamWriter("tempFile.txt"))
 			{
 				string line = "";
@@ -136,14 +138,19 @@ namespace Fotomagic
 					}
 				}
 			}
-			File.Delete(FILEPATHPRODUCTS);
-			File.Move("tempFile.txt", FILEPATHPRODUCTS);
+			File.Delete(FILEPATHCUSTOMERS);
+			File.Move("tempFile.txt", FILEPATHCUSTOMERS);
 		}
 
 		private void BtnCustomers_Click(object sender, RoutedEventArgs e)
 		{
-			CustomersScreen customersScreen = new CustomersScreen();
-			customersScreen.Show();
+
+		}
+
+		private void BtnProducts_Click(object sender, RoutedEventArgs e)
+		{
+			ProductsScreen productsScreen = new ProductsScreen();
+			productsScreen.Show();
 			this.Hide();
 		}
 
@@ -171,8 +178,18 @@ namespace Fotomagic
 		}
 
 		private void LstCustomers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-    }
+		{
+			if (lstCustomers.SelectedItems.Count > 0)
+			{
+				Customer customer = (Customer)lstCustomers.SelectedItems[0];
+				rctDarken.Visibility = Visibility.Visible;
+				rctDarken.Opacity = 0;
+				DoubleAnimation animation = new DoubleAnimation(0.7, TimeSpan.FromSeconds(0.2f));
+				rctDarken.BeginAnimation(Rectangle.OpacityProperty, animation);
+				CustomerProductsScreen customerProductsScreen = new CustomerProductsScreen(customer);
+				customerProductsScreen.Owner = this;
+				customerProductsScreen.Show();
+			}
+		}
+	}
 }
