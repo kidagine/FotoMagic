@@ -13,8 +13,10 @@ namespace Fotomagic.Model
         private static MainModel instance;
         private readonly string FILEPATHPRODUCTS = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\Products.txt";
         private readonly string FILEPATHCUSTOMERS = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\Customers.txt";
+        private readonly string FILEPATHCUSTOMERRECEIPTS = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "\\TxtFiles\\CustomerReceipts.txt";
         private List<Product> productsList = new List<Product>();
         private List<Customer> customersList = new List<Customer>();
+        private List<CustomerReceipt> customerReceipts = new List<CustomerReceipt>();
 
 
         public static MainModel CreateInstance()
@@ -72,6 +74,14 @@ namespace Fotomagic.Model
             WriteToTextFileProduct();
         }
 
+        public void CreateCustomerReceipt(int id, string name, string amount, string cost, string date)
+        {
+            CustomerReceipt customerReceipt = new CustomerReceipt(id, name, amount, cost, date);
+            customerReceipts.Add(customerReceipt);
+            CustomerProductsScreen.customerProductsScreen.LoadCustomerReceipt(customerReceipt);
+            WriteToTextFileCustomerReceipt();
+        }
+
         public void CreateCustomer(int id, string firstName, string lastName)
         {
             Customer customer = new Customer(id, firstName, lastName);
@@ -116,6 +126,19 @@ namespace Fotomagic.Model
             productsList.Add(product);
         }
 
+
+        public void LoadCustomerReceipt(CustomerReceipt customerReceipt)
+        {
+            foreach (CustomerReceipt p in customerReceipts)
+            {
+                if (p.Id.ToString().Equals(p.Id))
+                {
+                    customerReceipts.Remove(p);
+                }
+            }
+            customerReceipts.Add(customerReceipt);
+        }
+
         public void LoadCustomer(Customer customer)
         {
             foreach (Customer c in customersList)
@@ -147,6 +170,18 @@ namespace Fotomagic.Model
                 foreach (Customer customer in customersList)
                 {
                     tw.WriteLine(customer.Id + "|" + customer.FirstName + "|" + customer.LastName);
+                }
+                tw.Close();
+            }
+        }
+
+        private void WriteToTextFileCustomerReceipt()
+        {
+            using (TextWriter tw = new StreamWriter(FILEPATHCUSTOMERRECEIPTS))
+            {
+                foreach (CustomerReceipt customerReceipt in customerReceipts)
+                {
+                    tw.WriteLine(customerReceipt.Id + "|" + customerReceipt.Name + "|" + customerReceipt.Amount + "|" + customerReceipt.Cost + "|" + customerReceipt.Date);
                 }
                 tw.Close();
             }

@@ -11,6 +11,78 @@
 			<Label Content="Name" x:Name="lblCustomer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,9,0,0" FontFamily="Montserrat Medium" FontSize="20" Background="#00000000" Foreground="#FF2D2D2D"/>
 			<Label x:Name="lblError" Content="error" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="173,274,158,0" VerticalAlignment="Top" Foreground="#FFFF5130" Width="378" FontFamily="Montserrat" Grid.ColumnSpan="2" Visibility="Hidden"/>
 			<Button x:Name="btnExit" Content="ακύρωση?" HorizontalAlignment="Center" Margin="0,370,0,0" VerticalAlignment="Top" Width="98" Foreground="#FF1D9BF3" BorderBrush="#00000000" Background="Transparent" FontFamily="Montserrat" Click="BtnExit_Click" Grid.Column="1"/>
+			<ListView x:Name="lstProducts" Height="249" Margin="44,65,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Montserrat" FontSize="18" Foreground="#FF2D2D2D" HorizontalAlignment="Left" Style="{DynamicResource ListViewNin}" Width="583">
+				<ListView.View>
+					<GridView>
+						<GridViewColumn Header="Product"
+                                        DisplayMemberBinding="{Binding Name}" Width="150"/>
+						<GridViewColumn Header="Amount"
+                                        DisplayMemberBinding="{Binding Amount}" Width="150"/>
+						<GridViewColumn Header="Owed Money"
+                                        DisplayMemberBinding="{Binding Cost}" Width="150"/>
+						<GridViewColumn Header="Date"
+                                        DisplayMemberBinding="{Binding Date}" Width="150"/>
+					</GridView>
+				</ListView.View>
+				<ListView.ItemContainerStyle>
+					<Style TargetType="ListViewItem">
+						<Setter Property="Margin" Value="0"/>
+						<Setter Property="Padding" Value="0"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="ListViewItem">
+									<Border SnapsToDevicePixels="True"
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            Background="{TemplateBinding Background}">
+										<Border Name="Border" BorderBrush="#FFCDCDCD" BorderThickness="0, 0, 0, 1">
+											<Grid>
+												<Grid.RowDefinitions>
+													<RowDefinition MaxHeight="11" />
+													<RowDefinition />
+												</Grid.RowDefinitions>
+												<Rectangle Name="UpperHighlight" Visibility="Collapsed" Fill="#75FFFFFF" />
+												<GridViewRowPresenter Grid.RowSpan="2" 
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+											</Grid>
+										</Border>
+									</Border>
+									<ControlTemplate.Triggers>
+										<Trigger Property="IsMouseOver" Value="True">
+											<Setter Property="Background" Value="White"/>
+											<Setter Property="BorderThickness" Value="2"/>
+											<Trigger.EnterActions>
+												<BeginStoryboard HandoffBehavior="Compose">
+													<Storyboard>
+														<ColorAnimation Duration="0:0:0.5" From="#FF1769E0" To="#FF1D9BF3" AutoReverse="True" RepeatBehavior="Forever" Storyboard.TargetProperty="BorderBrush.Color" >
+															<ColorAnimation.EasingFunction>
+																<BackEase EasingMode="EaseInOut" Amplitude="2"/>
+															</ColorAnimation.EasingFunction>
+														</ColorAnimation>
+													</Storyboard>
+												</BeginStoryboard>
+											</Trigger.EnterActions>
+											<Trigger.ExitActions>
+												<BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+													<Storyboard>
+														<ColorAnimation Duration="0:0:0" To="Transparent" Storyboard.TargetProperty="BorderBrush.Color" />
+													</Storyboard>
+												</BeginStoryboard>
+											</Trigger.ExitActions>
+										</Trigger>
+										<Trigger Property="IsSelected" Value="True">
+											<Setter Property="Background" Value="#FFFBFBFB"/>
+											<Setter Property="BorderBrush" Value="#FF1D9BF3"/>
+											<Setter Property="BorderThickness" Value="2"/>
+										</Trigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</ListView.ItemContainerStyle>
+			</ListView>
 			<Rectangle Fill="#FF2D2D2D" HorizontalAlignment="Left" Height="1" Margin="22,55,0,0" Stroke="#FF2D2D2D" VerticalAlignment="Top" Width="607" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
 				<Rectangle.RenderTransform>
 					<TransformGroup>
@@ -32,8 +104,10 @@
 				</Rectangle.RenderTransform>
 			</Rectangle>
 			<ComboBox  x:Name="cmbProducts" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="44,325,0,0"/>
-			<TextBox x:Name="txtAmount" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="24" Margin="215,325,0,0" TextWrapping="Wrap" Text="Ποσότητα" VerticalAlignment="Top" Width="72" TextAlignment="Center" Foreground="#FF7E7E7E" Style="{DynamicResource TextBoxNin}" BorderBrush="#FF2D2D2D"/>
+			<Button x:Name="btnConfirm" Content="Επιβεβαίωση" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="442,326,80.4,0" VerticalAlignment="Top" Width="136" Background="#FF1D9BF3" BorderBrush="#00000000" Foreground="White" Height="22" FontFamily="Montserrat" FontSize="14" Click="BtnConfirm_Click" Style="{DynamicResource ButtonNinBig}"/>
+			<TextBox x:Name="txtAmount" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Height="24" Margin="183,325,0,0" TextWrapping="Wrap" Text="Ποσότητα" VerticalAlignment="Top" Width="72" TextAlignment="Center" Foreground="#FF7E7E7E" Style="{DynamicResource TextBoxNin}" BorderBrush="#FF2D2D2D"/>
 			<Label Content="x" x:Name="lblOwedMoney" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="608,319,0,0" FontFamily="Montserrat Medium" FontSize="20" Background="#00000000" Foreground="#FF2D2D2D" RenderTransformOrigin="2.621,2.94"/>
+			<DatePicker HorizontalAlignment="Left" Margin="277,324,0,0" VerticalAlignment="Top"/>
 		</Grid>
 	</Border>
 </Window>

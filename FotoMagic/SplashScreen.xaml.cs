@@ -41,7 +41,7 @@ namespace Fotomagic
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             CustomersScreen customersScreen = new CustomersScreen();
-            this.Hide();
+            this.Hide();    
             customersScreen.Show();
 
             dispatcherTimer.Stop();

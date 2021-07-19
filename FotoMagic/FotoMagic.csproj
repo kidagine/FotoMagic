@@ -87,6 +87,7 @@
     <Compile Include="CustomersScreen.xaml.cs">
       <DependentUpon>CustomersScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CustomerReceipt.cs" />
     <Compile Include="Model\MainModel.cs" />
     <Compile Include="ProductAddScreen.xaml.cs">
       <DependentUpon>ProductAddScreen.xaml</DependentUpon>
